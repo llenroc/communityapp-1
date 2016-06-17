@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TechReady.Portal.Models.Theme>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Themes</h2>
+
+<p>
+    @Html.ActionLink("Add a new theme", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ThemeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FY)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThemeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FY)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ThemeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ThemeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ThemeID })
+        </td>
+    </tr>
+}
+
+</table>

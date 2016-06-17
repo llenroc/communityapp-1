@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TechreadyForms.Views.SettingsPage" Title="Settings" >
+  <ScrollView>
+  <StackLayout Padding="8,8,8,4">
+    <StackLayout Spacing="0">
+      <Label Text="Notifications" FontSize="Micro" />
+      <StackLayout Padding="0,4,0,4" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End" >
+        <Label Text="On"  VerticalOptions="End"  HorizontalOptions="StartAndExpand" FontSize="15" IsVisible="{Binding NotificationsEnabled}"/>
+        <Label Text="Off" VerticalOptions="End"  HorizontalOptions="StartAndExpand" FontSize="15" IsVisible="{Binding NotificationsEnabled,Converter={StaticResource biv}}"/>
+        <Switch IsToggled="{Binding NotificationsEnabled}" Toggled="Notifications_Toggeled" HorizontalOptions="End"/>
+      </StackLayout>
+    </StackLayout>
+
+    <BoxView HeightRequest=".5" Color="#e0e0e0"/>
+    <Grid Padding="0,4,0,4" HorizontalOptions="Start">
+      <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="profile_tapped"></TapGestureRecognizer>
+      </Grid.GestureRecognizers>
+      <Label Text="My profile"  FontSize="15" LineBreakMode="TailTruncation"/>
+    </Grid>
+    <BoxView HeightRequest=".5" Color="#e0e0e0"/>
+    <Grid Padding="0,4,0,4" HorizontalOptions="Start">
+      <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="about_tapped"></TapGestureRecognizer>
+      </Grid.GestureRecognizers>
+      <Label Text="About"  FontSize="15" LineBreakMode="TailTruncation"/>
+    </Grid>
+    <BoxView HeightRequest=".5" Color="#e0e0e0"/>
+    <Grid Padding="0,4,0,4" HorizontalOptions="Start">
+      <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="logout_tapped"></TapGestureRecognizer>
+      </Grid.GestureRecognizers>
+      <Label Text="Logout"  FontSize="15" LineBreakMode="TailTruncation"/>
+    </Grid>
+  </StackLayout>
+  </ScrollView>
+</ContentPage>

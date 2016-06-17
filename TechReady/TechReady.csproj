@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1522A498-3C9C-428D-9649-69658E152C61}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TechReady</RootNamespace>
+    <AssemblyName>TechReady</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_PHONE_APP;RELEASE_LIVE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP;RELEASE_LIVE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <DesignData Include="SampleData\UserRegistrationPageViewModelSampleData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="TechReadyStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="UserControls\EmailInfoMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BrowseEventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LearnPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EventsFilterdPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FilterEventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FilterLearningResourcesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FilterSpeakersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FollowedEvents.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HubPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LearningResourcesFilteredPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageContentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PrivacyPolicyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SessionDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShowNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SpeakerDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WatchedVideosListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpeakersListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventRegistrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutUsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserRegisterationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TechReady.API\DTO\HomeRequest.cs">
+      <Link>DTO\HomeRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\HomeResponse.cs">
+      <Link>DTO\HomeResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\LearningResourcesRequet.cs">
+      <Link>DTO\LearningResourcesRequet.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\LearningResourcesResponse.cs">
+      <Link>DTO\LearningResourcesResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\SpeakersRequest.cs">
+      <Link>DTO\SpeakersRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\SpeakersResponse.cs">
+      <Link>DTO\SpeakersResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\TechnologiesRequest.cs">
+      <Link>DTO\TechnologiesRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\DTO\TechnologiesResponse.cs">
+      <Link>DTO\TechnologiesResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\Models\AudienceType.cs">
+      <Link>Models\AudienceType.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\Models\City.cs">
+      <Link>Models\City.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\Models\Events.cs">
+      <Link>Models\Events.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\Models\GeoCodeItem.cs">
+      <Link>Models\GeoCodeItem.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\Models\LearningResource.cs">
+      <Link>Models\LearningResource.cs</Link>
+    </Compile>
+    <Compile Include="..\TechReady.API\Models\SecondaryTechnology.cs">
+      <Link>Models\SecondaryTechnology.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\NavigationHelper.cs" />
+    <Compile Include="Common\ObservableDictionary.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Helpers\CommonSettings.cs" />
+    <Compile Include="Helpers\DataTemplateSelectors\LearningResourceResultItemTemplateSelector.cs" />
+    <Compile Include="Helpers\DataTemplateSelectors\EventResultItemTemplateSelector.cs" />
+    <Compile Include="Helpers\ExtensionProperties\HtmlToText.cs" />
+    <Compile Include="Helpers\ExtensionProperties\RichTextBlockExtensions.cs" />
+    <Compile Include="Helpers\ExtensionProperties\WebViewExtension.cs" />
+    <Compile Include="Helpers\GeoLocationHelper\GeoLocationHelper.cs" />
+    <Compile Include="Helpers\MessageHelper\MessageHelper.cs" />
+    <Compile Include="Helpers\NetworkHelper\NetworkHelper.cs" />
+    <Compile Include="Helpers\NotificationsHelper.cs" />
+    <Compile Include="Helpers\ServiceCallers\ServiceCaller.cs" />
+    <Compile Include="Helpers\ServiceCallers\ServiceProxy.cs" />
+    <Compile Include="Helpers\Storage\LocalStorage.cs" />
+    <Compile Include="Helpers\Telemetry\TelemetryCollector.cs" />
+    <Compile Include="Helpers\ValueConverters\AudienceTypeToImageConverter.cs" />
+    <Compile Include="Helpers\ValueConverters\LearningResourceThumbnailImageConverter.cs" />
+    <Compile Include="Helpers\ValueConverters\TimespanToTimeInfoConverter.cs" />
+    <Compile Include="Helpers\ValueConverters\ValueConverters.cs" />
+    <Compile Include="NavigationParameters\EventsFilterPageNavigationParameters.cs" />
+    <Compile Include="NavigationParameters\NavigationParameter.cs" />
+    <Compile Include="NavigationParameters\UserRegistrationPageNavigationParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCallers\BlogService.cs" />
+    <Compile Include="ServiceCallers\LearningResourceService.cs" />
+    <Compile Include="Services\MobileServices\TechReadyServices\push.register.cs">
+      <ConnectedServiceReference>TechReadyServices</ConnectedServiceReference>
+    </Compile>
+    <Compile Include="UserControls\EmailInfoMessage.xaml.cs">
+      <DependentUpon>EmailInfoMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\EventDetailsPageViewModel.cs" />
+    <Compile Include="ViewModels\FeedbackPageViewModel.cs" />
+    <Compile Include="ViewModels\FilterLearningResourcesPageViewModel.cs" />
+    <Compile Include="ViewModels\EventsFilterPageViewModel.cs" />
+    <Compile Include="ViewModels\LearnPageViewModel.cs" />
+    <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\SessionDetailsPageViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\HubPageViewModel.cs" />
+    <Compile Include="ViewModels\SpeakerDetailsPageViewModel.cs" />
+    <Compile Include="ViewModels\WatchedVideosListPageViewModel.cs" />
+    <Compile Include="ViewModels\SpeakersListPageViewModel.cs" />
+    <Compile Include="ViewModels\UserRegistrationPageViewModel.cs" />
+    <Compile Include="Views\BrowseEventsPage.xaml.cs">
+      <DependentUpon>BrowseEventsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventDetails.xaml.cs">
+      <DependentUpon>EventDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeedbackPage.xaml.cs">
+      <DependentUpon>FeedbackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LearnPage.xaml.cs">
+      <DependentUpon>LearnPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventsFilterdPage.xaml.cs">
+      <DependentUpon>EventsFilterdPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilterEventsPage.xaml.cs">
+      <DependentUpon>FilterEventsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilterLearningResourcesPage.xaml.cs">
+      <DependentUpon>FilterLearningResourcesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilterSpeakersPage.xaml.cs">
+      <DependentUpon>FilterSpeakersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FollowedEvents.xaml.cs">
+      <DependentUpon>FollowedEvents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\FollowedEventsViewModel.cs" />
+    <Compile Include="Views\HubPage.xaml.cs">
+      <DependentUpon>HubPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LearningResourcesFilteredPage.xaml.cs">
+      <DependentUpon>LearningResourcesFilteredPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageContentDialog.xaml.cs">
+      <DependentUpon>MessageContentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PrivacyPolicyPage.xaml.cs">
+      <DependentUpon>PrivacyPolicyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SessionDetailsPage.xaml.cs">
+      <DependentUpon>SessionDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShowNotification.xaml.cs">
+      <DependentUpon>ShowNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpeakerDetailsPage.xaml.cs">
+      <DependentUpon>SpeakerDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WatchedVideosListPage.xaml.cs">
+      <DependentUpon>WatchedVideosListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpeakersListPage.xaml.cs">
+      <DependentUpon>SpeakersListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventRegistrationPage.xaml.cs">
+      <DependentUpon>EventRegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutUsPage.xaml.cs">
+      <DependentUpon>AboutUsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserRegisterationPage.xaml.cs">
+      <DependentUpon>UserRegisterationPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\AppIcons\ArrowDownIcon.png" />
+    <Content Include="Assets\AppIcons\Follow.png" />
+    <Content Include="Assets\AppIcons\helpAppIcon.png" />
+    <Content Include="Assets\AppIcons\Share.png" />
+    <Content Include="Assets\Images\adam.png" />
+    <Content Include="Assets\Images\addBlack.png" />
+    <Content Include="Assets\Images\addWhite.png" />
+    <Content Include="Assets\Images\Agenda.png" />
+    <Content Include="Assets\Images\communityEvents.png" />
+    <Content Include="Assets\Images\developer.png" />
+    <Content Include="Assets\Images\event1.png" />
+    <Content Include="Assets\Images\event2.png" />
+    <Content Include="Assets\Images\event3.png" />
+    <Content Include="Assets\Images\FacebookLoginImage.png" />
+    <Content Include="Assets\Images\FavoriteEvents.png" />
+    <Content Include="Assets\Images\Feedback.png" />
+    <Content Include="Assets\Images\Follow.png" />
+    <Content Include="Assets\Images\Go.png" />
+    <Content Include="Assets\Images\hubBackgrundImage.png" />
+    <Content Include="Assets\Images\industryEvents.png" />
+    <Content Include="Assets\Images\info.png" />
+    <Content Include="Assets\Images\itProfessional.png" />
+    <Content Include="Assets\Images\john.png" />
+    <Content Include="Assets\Images\Linkedin.png" />
+    <Content Include="Assets\Images\Logo.png" />
+    <Content Include="Assets\Images\logoTechReady.png" />
+    <Content Include="Assets\Images\max.png" />
+    <Content Include="Assets\Images\microsoftEvents.png" />
+    <Content Include="Assets\Images\MicrosoftLoginImage.png" />
+    <Content Include="Assets\Images\other.png" />
+    <Content Include="Assets\Images\placeholderSpeaker.png" />
+    <Content Include="Assets\Images\PrivacyIcon.png" />
+    <Content Include="Assets\Images\ReadIcon.png" />
+    <Content Include="Assets\Images\Redmond.png" />
+    <Content Include="Assets\Images\Settings.png" />
+    <Content Include="Assets\Images\Settings2.png" />
+    <Content Include="Assets\Images\Speakers.png" />
+    <Content Include="Assets\Images\speakers_new.png" />
+    <Content Include="Assets\Images\student.png" />
+    <Content Include="Assets\Images\Tag.png" />
+    <Content Include="Assets\Images\TechReadyLoginLogo.png" />
+    <Content Include="Assets\Images\TrendingEvents.png" />
+    <Content Include="Assets\Images\TwitterLoginImage.png" />
+    <Content Include="Assets\Images\UnFollow.png" />
+    <Content Include="Assets\Images\UnReadIcon.png" />
+    <Content Include="Assets\Images\video1.png" />
+    <Content Include="Assets\Images\video2.png" />
+    <Content Include="Assets\Images\video3.png" />
+    <Content Include="Assets\Images\videoOffice365.png" />
+    <Content Include="Assets\Images\videoVisualStudio.png" />
+    <Content Include="Assets\Images\viewMore.png" />
+    <Content Include="Assets\Images\WatchedVideos.png" />
+    <Content Include="Assets\Images\webinarEvents.png" />
+    <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\SmallLogo.scale-240.png" />
+    <Content Include="Assets\SplashScreen.scale-240.png" />
+    <Content Include="Assets\Square71x71Logo.scale-240.png" />
+    <Content Include="Assets\StoreLogo.scale-240.png" />
+    <Content Include="Assets\WideLogo.scale-240.png" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Coding4Fun.Toolkit, Version=2.0.8.0, Culture=neutral, PublicKeyToken=c5fd7b72b1a17ce4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\wpa81\Coding4Fun.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Coding4Fun.Toolkit.Controls, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.1.6\lib\wpa81\Coding4Fun.Toolkit.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.1.0.1899, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.1.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.Windows, Version=1.1.0.1906, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsApps.1.1.0\lib\wpa81\Microsoft.ApplicationInsights.Extensibility.Windows.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.PersistenceChannel, Version=1.1.0.1903, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PersistenceChannel.1.1.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.PersistenceChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.MobileServices.1.3.1\lib\wpa81\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.MobileServices.1.3.1\lib\wpa81\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\wpa81\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\wpa81\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TNX.ResolveIT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TnxResolveIT.1.0.1\lib\TNX.ResolveIT.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TNX.RssReader, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TnxRssReader.1.1.4\lib\TNX.RssReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Service References\Application Insights\ConnectedService.json" />
+    <None Include="Service References\TechReadyServicesMobileService\ConnectedService.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

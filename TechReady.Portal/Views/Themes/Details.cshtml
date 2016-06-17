@@ -1,0 +1,43 @@
+﻿@model TechReady.Portal.Models.Theme
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Theme</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ThemeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThemeName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Audience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Audience)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FY)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ThemeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

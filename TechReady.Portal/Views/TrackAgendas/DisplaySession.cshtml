@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TechReady.Portal.Models.TrackAgenda>
+
+@{
+    ViewBag.Title = "Display Session";
+}
+
+<table class="table" style="font-size: 1.5em; font-weight: bold;">
+    <tr>
+        <td>
+            Agenda of track: @ViewBag.trackName
+        </td>
+        <td class="pull-right">
+            Event: @ViewBag.eventName
+        </td>
+    </tr>
+</table>
+
+
+<p>
+    @*@Html.ActionLink("Add Session", "Create")*@
+    @Html.ActionLink("Add sessions to the agenda", "Create", "TrackAgendas", new { id = ViewBag.eventTrackID }, null)
+
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Session.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Speaker.SpeakerName)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FavCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QRCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.Session.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Speaker.SpeakerName)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FavCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QRCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TrackAgendaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TrackAgendaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TrackAgendaID })
+        </td>
+    </tr>
+}
+
+</table>

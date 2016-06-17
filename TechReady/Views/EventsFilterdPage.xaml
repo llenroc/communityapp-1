@@ -1,0 +1,89 @@
+﻿<Page
+    x:Class="TechReady.Views.EventsFilterdPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechReady.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{StaticResource PageBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid Width="160" Height="56" Margin="0,0,12,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="/Assets/Images/logoTechReady.png"/>
+            </Grid>
+        </Grid>
+
+        <Image Grid.Row="1" Source="/Assets/Images/hubBackgrundImage.png" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="70,56,0,0"/>
+
+        <Grid Grid.Row="1" Margin="22,0,26,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="attend" Grid.Row="0" FontFamily="Segoe WP" FontSize="36" Foreground="#FF002050" FontWeight="SemiLight" />
+
+            <StackPanel Grid.Row="1">
+
+                <!--List view of speakers-->
+
+                <ListView Margin="0,6,0,0">
+                    <Button />
+                  
+                    
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" Source="ms-appx:///Assets/Images/communityEvents.png" Height="100" Width="100" Stretch="UniformToFill" />
+
+                                <Grid Grid.Column="1" Margin="10,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Style="{StaticResource TechReadyFilterEventsPageTextBlock}" Text="community Tech Days 2015" FontSize="18" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" Text="Document DB | NO SQL | SQL | SQL SERVER | Windows 10" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,3,0,0" FontSize="16"/>
+                                    <TextBlock Grid.Row="2" Text="Delhi" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,10,0,0" FontSize="16"/>
+                                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                        <TextBlock Text="24 August" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,-4,0,0" FontSize="16"/>
+                                        <TextBlock Text="TO" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-4,0,0" FontSize="16"/>
+                                        <TextBlock Text="25 August" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-4,0,0" FontSize="16"/>
+
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+
+    <Page.BottomAppBar>
+        <CommandBar Background="#FF002050">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Advanced Filter" Icon="Filter"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

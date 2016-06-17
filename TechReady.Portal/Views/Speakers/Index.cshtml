@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TechReady.Portal.Models.Speaker>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Speakers</h2>
+
+<p>
+    @Html.ActionLink("Add a new speaker", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeakerName)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Profile)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.PicUrl)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Affiliation)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobilePhone)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TwitterHandle)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.RecommendedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeakerLevel)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpeakerName)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Profile)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PicUrl)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Affiliation)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobilePhone)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TwitterHandle)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.RecommendedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpeakerLevel)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SpeakerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SpeakerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SpeakerID })
+        </td>
+    </tr>
+}
+
+</table>

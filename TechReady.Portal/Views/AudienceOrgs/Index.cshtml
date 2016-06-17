@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TechReady.Portal.Models.AudienceOrg>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AudienceType1.TypeOfAudience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AudOrg)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudienceType1.TypeOfAudience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudOrg)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AudienceOrgID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AudienceOrgID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AudienceOrgID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<TechReady.Portal.Models.Session>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section Scripts {
+<script type="text/javascript">
+    $(function () {
+        $("#LinkCreateNewEvent").on("click", function () {
+            $("#DivTrackDropdown").show();
+        });
+
+        $("#trackID").change(function () {
+            var trackID = $("#trackID").val();
+            var Url = "../Sessions/Create/?id=" + trackID;
+            window.location = Url;
+        });
+    });
+</script>
+}
+
+<h2>Index</h2>
+
+<p>
+    <a id="LinkCreateNewEvent">Create New</a>
+    @*@Html.ActionLink("Create New", "Create")*@
+    <div id="DivTrackDropdown" style="display : none">
+        <label for="trackID">Select a Track: </label>
+        <span>
+            @Html.DropDownList("trackID", new SelectList(ViewBag.Tracks, "TrackID", "TrackDisplayName"), "--select a track--", new { htmlAttributes = new { @class = "form-control" } })
+        </span>
+    </div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Track.TrackDisplayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TechLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimaryTechnologyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondaryTechnologyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InfraNeeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreRequisites)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostRequisites)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Track.TrackDisplayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TechLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimaryTechnology.PrimaryTech)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondaryTechnology.SecondaryTech)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InfraNeeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreRequisites)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostRequisites)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SessionID , trackID=item.TrackID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SessionID }) |
+            @if (item.TrackAgenda.Count == 0) {
+                @Html.ActionLink("Delete", "Delete", new { id=item.SessionID })
+            }
+        </td>
+    </tr>
+}
+
+</table>

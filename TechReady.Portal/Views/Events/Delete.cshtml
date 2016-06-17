@@ -1,0 +1,172 @@
+﻿@model TechReady.Portal.Models.Event
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.City.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventAbstract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventAbstract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventFromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventFromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventToDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventToDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventVenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventVenue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScEligibility)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScEligibility)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PubtoMSCOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PubtoMSCOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostRegistered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostRegistered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostAttended)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostAttended)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostManualOverallRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostManualOverallRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventOwner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventVisibility)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventVisibility)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="text-danger">
+            @ViewBag.showDeleteMsg
+        </div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,39 @@
+﻿<Application
+    x:Class="TechReady.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechReady"
+    xmlns:valueConverters="using:TechReady.Helpers.ValueConverters">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="TechReadyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    
+                    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="#999999" />
+                    <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="#002050" />
+                    <SolidColorBrush x:Key="PivotHeaderBackgroundUnselectedBrush" Color="#000000" />
+                    <Style x:Key="Html2XamlStyle" TargetType="RichTextBlock">
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="FontSize"  Value="19" />
+                    </Style>
+
+                    <valueConverters:AudienceTypeToImageConverter x:Key="AudienceTypeToImageConverter"/>
+                    <valueConverters:EventTypeToImageConverter x:Key="EventTypeToImageConverter"/>
+                    <valueConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+                    <valueConverters:BoolToInverseVisibilityConverter x:Key="BoolToInverseVisibilityConverter"/>
+                    <valueConverters:TimespanToTimeInfoConverter x:Key="TimespanToTimeInfoConverter"/>
+                    <valueConverters:UTCTimeToLocalTimeConverter x:Key="UTCTimeToLocalTimeConverter"/>
+                    <valueConverters:LearningResourceThumbnailImageConverter x:Key="LearningResourceThumbnailImageConverter"/>
+                </ResourceDictionary>
+               
+            </ResourceDictionary.ThemeDictionaries>
+            
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>

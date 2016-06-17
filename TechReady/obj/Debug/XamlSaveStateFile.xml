@@ -1,0 +1,17 @@
+<XamlCompilerSaveState>
+  <ReferenceAssemblyList>
+    <ReferenceAssembly PathName="c:\code\main\main\packages\coding4fun.toolkit.controls.2.1.6\lib\wpa81\coding4fun.toolkit.controls.dll" HashGuid="8bbb9304-fede-39af-5ed4-00ee4e3fd140" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\coding4fun.toolkit.controls.2.1.6\lib\wpa81\coding4fun.toolkit.dll" HashGuid="119685b3-f018-829b-095c-510e7d2a3a28" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\htmlagilitypack.1.4.9\lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch\htmlagilitypack.dll" HashGuid="365e4636-8cbf-8d2d-3790-d3267e801443" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\microsoft.applicationinsights.1.1.0\lib\portable-win81+wpa81\microsoft.applicationinsights.dll" HashGuid="184a8242-0b85-444e-2346-c2473c1d6ceb" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\microsoft.applicationinsights.windowsapps.1.1.0\lib\wpa81\microsoft.applicationinsights.extensibility.windows.dll" HashGuid="0cfd8f3d-feff-7167-8f6d-52f443177ca5" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\microsoft.applicationinsights.persistencechannel.1.1.0\lib\portable-win81+wpa81\microsoft.applicationinsights.persistencechannel.dll" HashGuid="983b187d-c490-3a7c-dca7-d8a8fa4d0cb1" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\windowsazure.mobileservices.1.3.1\lib\wpa81\microsoft.windowsazure.mobile.dll" HashGuid="9ae27956-fc25-6346-a044-affad933acd5" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\windowsazure.mobileservices.1.3.1\lib\wpa81\microsoft.windowsazure.mobile.ext.dll" HashGuid="d14f6c57-ffca-9ad1-126f-ce93487ab524" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\newtonsoft.json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\newtonsoft.json.dll" HashGuid="86223907-5808-be51-71b4-c872f8140e29" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\microsoft.net.http.2.2.29\lib\wpa81\system.net.http.extensions.dll" HashGuid="794366f8-cc6d-f0fa-3d07-33b45136e193" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\microsoft.net.http.2.2.29\lib\wpa81\system.net.http.primitives.dll" HashGuid="7b71418d-e056-7613-c839-85fb8f6472a6" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\tnxresolveit.1.0.1\lib\tnx.resolveit.dll" HashGuid="a54e72f8-fd4e-bff5-d577-704a25f86ba3" />
+    <ReferenceAssembly PathName="c:\code\main\main\packages\tnxrssreader.1.1.4\lib\tnx.rssreader.dll" HashGuid="ca62152e-fc18-5ffc-ea9a-887782821a0f" />
+  </ReferenceAssemblyList>
+</XamlCompilerSaveState>

@@ -1,0 +1,2 @@
+C:\Code\Main\Main\TechreadyForms.UWP\TechreadyForms.UWP.csproj;x86
+C:\Code\Main\Main\TechreadyForms\TechreadyForms\TechreadyForms.csproj;neutral

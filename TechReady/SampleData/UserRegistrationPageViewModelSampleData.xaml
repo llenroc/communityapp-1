@@ -1,0 +1,44 @@
+﻿<ViewModels:UserRegistrationPageViewModel xmlns:ViewModels="using:TechReady.ViewModels" xmlns:Models="using:TechReady.Common.Models" Email="Aliquam cras" FullName="Class nam aenean" OperationInProgress="True" ShowCommandBar="True" ShowError="False">
+    <ViewModels:UserRegistrationPageViewModel.AudienceTypes>
+        <Models:AudienceType AudienceTypeName="Praesent nunc" AudienceTypeId="26"/>
+        <Models:AudienceType AudienceTypeName="Dis accumsan curae phasellus" AudienceTypeId="42"/>
+        <Models:AudienceType AudienceTypeName="Quisque donec etiam" AudienceTypeId="94"/>
+        <Models:AudienceType AudienceTypeName="Bibendum est consequat amet" AudienceTypeId="82"/>
+        <Models:AudienceType AudienceTypeName="Dictumst nullam aptent convallis eleifend" AudienceTypeId="20"/>
+        <Models:AudienceType AudienceTypeName="Adipiscing vivamus fusce hac lorem" AudienceTypeId="21"/>
+        <Models:AudienceType AudienceTypeName="Ante dignissim" AudienceTypeId="20"/>
+        <Models:AudienceType AudienceTypeName="Leo morbi" AudienceTypeId="51"/>
+        <Models:AudienceType AudienceTypeName="Elementum parturient facilisi faucibus" AudienceTypeId="79"/>
+        <Models:AudienceType AudienceTypeName="Vestibulum auctor" AudienceTypeId="98"/>
+    </ViewModels:UserRegistrationPageViewModel.AudienceTypes>
+    <ViewModels:UserRegistrationPageViewModel.City>
+        <Models:City CityName="Nam"/>
+    </ViewModels:UserRegistrationPageViewModel.City>
+    <ViewModels:UserRegistrationPageViewModel.Cities>
+        <Models:City CityName="Nam"/>
+        <Models:City CityName="Cras"/>
+        <Models:City CityName="Aenean"/>
+        <Models:City CityName="Duis"/>
+        <Models:City CityName="Sed"/>
+        <Models:City CityName="Curae"/>
+        <Models:City CityName="Donec"/>
+        <Models:City CityName="Dis"/>
+        <Models:City CityName="Aliquam"/>
+        <Models:City CityName="Mauris"/>
+    </ViewModels:UserRegistrationPageViewModel.Cities>
+    <ViewModels:UserRegistrationPageViewModel.SecondaryTechnologies>
+        <Models:SecondaryTechnology IsSelected="True" PrimaryTechnologyName="Facilisis aliquam cursus arcu" PrimaryTechnologyId="65" SecondaryTechnologyId="77" SecondaryTechnologyName="Habitant congue"/>
+        <Models:SecondaryTechnology IsSelected="False" PrimaryTechnologyName="Vestibulum commodo adipiscing inceptos dictum" PrimaryTechnologyId="97" SecondaryTechnologyId="61" SecondaryTechnologyName="Nulla aliquet blandit"/>
+        <Models:SecondaryTechnology IsSelected="True" PrimaryTechnologyName="Diam parturient conubia" PrimaryTechnologyId="10" SecondaryTechnologyId="85" SecondaryTechnologyName="Lectus proin mus fermentum"/>
+        <Models:SecondaryTechnology IsSelected="False" PrimaryTechnologyName="Habitasse hendrerit eget libero" PrimaryTechnologyId="55" SecondaryTechnologyId="99" SecondaryTechnologyName="Interdum cubilia fringilla"/>
+        <Models:SecondaryTechnology IsSelected="True" PrimaryTechnologyName="Lobortis nec elit litora dapibus" PrimaryTechnologyId="96" SecondaryTechnologyId="27" SecondaryTechnologyName="Himenaeos ligula"/>
+        <Models:SecondaryTechnology IsSelected="False" PrimaryTechnologyName="Imperdiet luctus magnis egestas" PrimaryTechnologyId="63" SecondaryTechnologyId="98" SecondaryTechnologyName="Augue nascetur"/>
+        <Models:SecondaryTechnology IsSelected="True" PrimaryTechnologyName="Penatibus dolor erat" PrimaryTechnologyId="91" SecondaryTechnologyId="79" SecondaryTechnologyName="Non malesuada enim"/>
+        <Models:SecondaryTechnology IsSelected="False" PrimaryTechnologyName="Mauris adipiscing tincidunt parturient" PrimaryTechnologyId="85" SecondaryTechnologyId="81" SecondaryTechnologyName="Pharetra vestibulum mattis porttitor vestibulum"/>
+        <Models:SecondaryTechnology IsSelected="True" PrimaryTechnologyName="Ultricies sagittis per eros" PrimaryTechnologyId="12" SecondaryTechnologyId="57" SecondaryTechnologyName="Tristique vestibulum placerat pulvinar vestibulum"/>
+        <Models:SecondaryTechnology IsSelected="False" PrimaryTechnologyName="Adipiscing nisi" PrimaryTechnologyId="87" SecondaryTechnologyId="30" SecondaryTechnologyName="Euismod senectus nibh"/>
+    </ViewModels:UserRegistrationPageViewModel.SecondaryTechnologies>
+    <ViewModels:UserRegistrationPageViewModel.SelectedAudienceType>
+        <Models:AudienceType AudienceTypeName="Curabitur vestibulum duis sed" AudienceTypeId="72"/>
+    </ViewModels:UserRegistrationPageViewModel.SelectedAudienceType>
+</ViewModels:UserRegistrationPageViewModel>

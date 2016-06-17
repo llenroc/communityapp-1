@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.AboutUsPage"
+             Title="About">
+    <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+    <StackLayout Padding="10,20,12,0" >
+
+      <Grid HorizontalOptions="Center" Padding="0,12,0,24">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+        <Grid>
+          <Image Source="{helpers:ImageResource TechreadyForms.Images.Logo.png}" Aspect="AspectFit"/>
+        </Grid>
+      </Grid>
+        
+        <Label LineBreakMode="WordWrap" Text="India Tech Community app is your ultimate resource to stay up-to-date on the best of technical content, community events, webinars, hands-on labs, learning resources &amp; other updates on Microsoft technologies including Open Source on Azure. ">
+          
+        </Label>
+        <Label LineBreakMode="WordWrap" Text="Whether you build, manage or design, the app will deliver curated content customized to your role and preferences.  The app is designed to help you tailor your learning experience towards future-proofing your technical skills.">
+            
+        </Label>
+        <Label TextColor="Blue" Text="Privacy Statement">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped ="OnTapGestureRecognizerTapped"
+                NumberOfTapsRequired="1" />
+            </Label.GestureRecognizers>
+        </Label>
+
+    </StackLayout>
+
+</ContentPage>

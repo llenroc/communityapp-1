@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TechReady.Portal.Models.LearningResourceFeed>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AudienceTypes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LearningResourceType.LearningResourceTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimaryTechnology.PrimaryTech)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RSSLink)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @{ 
+                var audienceTypes = item.AudienceTypes.Select(a=>a.TypeOfAudience);
+                @String.Join(",", audienceTypes.ToArray());
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LearningResourceType.LearningResourceTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimaryTechnology.PrimaryTech)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RSSLink)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LearningResourceFeedID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LearningResourceFeedID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LearningResourceFeedID })
+        </td>
+    </tr>
+}
+
+</table>

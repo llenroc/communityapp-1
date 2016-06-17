@@ -1,0 +1,106 @@
+﻿@model TechReady.Portal.Models.Session
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Session</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Track.TrackDisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Track.TrackDisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SessionNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SessionNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abstract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimaryTechnologyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrimaryTechnology.PrimaryTech)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondaryTechnologyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondaryTechnology.SecondaryTech)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InfraNeeds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InfraNeeds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreRequisites)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreRequisites)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostRequisites)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostRequisites)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SessionID, trackID=Model.TrackID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

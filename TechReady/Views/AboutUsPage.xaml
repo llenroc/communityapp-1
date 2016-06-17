@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="TechReady.Views.AboutUsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{StaticResource PageBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+       
+        <Grid Grid.Row="1" Margin="22,0,26,12" Visibility="{Binding OperationInProgress,Converter={StaticResource BoolToInverseVisibilityConverter}}">
+            <Grid Visibility="{Binding ShowError,Converter={StaticResource BoolToInverseVisibilityConverter}}">
+
+                <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock x:Name="HeadingText" Grid.Row="0" Text="about" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="36" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0"/>
+
+            <Grid Grid.Row="1" Margin="0,8,0,0">
+            <ScrollViewer>
+                <StackPanel>
+                    <Image Width="170" Margin="12" Source="ms-appx:///Assets/Images/TechReadyLoginLogo.png" Visibility="Visible"/>
+
+                    <StackPanel>
+                            <TextBlock Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="Wrap">
+                                India Tech Community app is your ultimate resource to stay up-to-date on the best of technical content, community events, webinars, hands-on labs, learning resources &amp; other updates on Microsoft technologies including Open Source on Azure.
+                            </TextBlock>
+                                <TextBlock Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="Wrap" Margin="0,12,0,0">
+                            Whether you build, manage or design, the app will deliver curated content customized to your role and preferences.  The app is designed to help you tailor your learning experience towards future-proofing your technical skills.
+                            </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                                <TextBlock Style="{StaticResource TechReadyContentTextBlock}" Margin="0,0,0,0" Foreground="Blue"  Tapped="privacyPolicy_tapped">
+                                    Privacy Statement
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+            </ScrollViewer>
+            </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

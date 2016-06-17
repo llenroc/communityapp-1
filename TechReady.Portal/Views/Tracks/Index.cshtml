@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TechReady.Portal.Models.Track>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>List of tracks</h3>
+
+<p>
+  If the track is not listed below, @Html.ActionLink("create a new track", "Create")
+</p>
+@Html.ActionLink("Go back to home", "Index", "Home", new { area = "" }, new { @class = "pull-right" })
+@*<a href="/Home" class="pull-right"> Go back to home</a>*@
+<table class="table">
+    <tr>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.TrackDisplayName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TrackAbstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AudType)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.InternalTrackName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Format)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Theme.ThemeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackDisplayName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackAbstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AudType.TypeOfAudience)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.InternalTrackName)
+        </td>*@
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Format)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Theme.ThemeName)
+        </td>
+        <td>
+            @Html.ActionLink("Manage Sessions", "Browse", "Sessions", new { id = item.TrackID }, null) |
+            @Html.ActionLink("Modify", "Edit", new { id=item.TrackID }) |
+            @Html.ActionLink("View details", "Details", new { id=item.TrackID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TrackID })
+        </td>
+    </tr>
+}
+
+</table>

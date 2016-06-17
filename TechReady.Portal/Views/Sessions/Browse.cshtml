@@ -1,0 +1,110 @@
+﻿@model IEnumerable<TechReady.Portal.Models.Session>
+
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2>
+    List of sessions
+</h2>
+    <p class="pull-right;"><b> Track Name:
+        @ViewBag.selectedTrack
+        @*@foreach (var item2 in Model) {
+            {
+                    @Html.DisplayFor(modelItem => item2.Track.TrackDisplayName);
+            break;
+            }*@
+    </b>
+    </p>
+
+<p>
+    @*@Html.ActionLink("Add a new session", "Create")*@
+    @Html.ActionLink("Add a new session", "Create", "Sessions", new { id = ViewBag.selectedTrackID }, null)
+
+</p>
+
+<p>
+    @Html.ActionLink("Go back to view all tracks", "Index", "Tracks")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Track.TrackDisplayName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.SessionNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TechLevel)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.PrimaryTech)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondaryTech)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.InfraNeeds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreRequisites)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostRequisites)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Track.TrackDisplayName)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.SessionNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TechLevel)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PrimaryTech)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondaryTech)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.InfraNeeds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreRequisites)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostRequisites)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SessionID, trackID = ViewBag.selectedTrackID }, null) |
+            @Html.ActionLink("Details", "Details", new { id=item.SessionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SessionID })
+        </td>
+    </tr>
+}
+
+</table>

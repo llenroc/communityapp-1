@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             x:Class="TechreadyForms.Views.UserRegistrationPage" Title="Register" BackgroundColor="White">
+    
+    <Grid Grid.Row="1" Padding="22,0,26,12">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+        <Grid>
+
+            <Grid Grid.Row="0" Padding="0,8,0,0" IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}">
+                <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                    <StackLayout>
+                        
+                        
+                        <Label Text="Your Name"></Label>
+                        <Entry Text="{Binding FullName, Mode=TwoWay}" Placeholder="enter your name" TextColor="Black"/>
+
+
+                                <StackLayout Orientation="Horizontal" Spacing="4">
+                                        <Label Text="Your Email"></Label>
+                                    <Image Source="{helpers:ImageResource TechreadyForms.Images.info.png}" HeightRequest="18" WidthRequest="18">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                                <Entry Text="{Binding Email,Mode=TwoWay}" Placeholder="sample@outlook.com" TextColor="Black"/>
+
+                        <Label Text="Your Region"/>
+
+                        <helpers:BindablePicker ItemsSource="{Binding Cities}" SelectedItem="{Binding CityName,Mode=TwoWay}" />
+
+
+
+                        <Label Text="What describes you best"/>
+
+
+                        <helpers:BindablePicker ItemsSource="{Binding AudienceTypes}" SelectedItem="{Binding SelectedAudienceTypeName,Mode=TwoWay}" />
+
+                        <Label Text="Organization Type"/>
+
+                        <helpers:BindablePicker ItemsSource="{Binding AudienceOrgTypes}" SelectedItem="{Binding SelectedAudienceOrgTypeName,Mode=TwoWay}" />
+
+                        <Label Text="Technologies you are interested in"/>
+
+                        <ListView ItemsSource="{Binding SecondaryTechnologies}" RowHeight="50">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <controls:CheckBox Checked="{Binding IsSelected,Mode=TwoWay}" DefaultText="{Binding PrimaryTechnologyName}" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        
+                    </StackLayout>
+                        </Grid>
+                        <Button Grid.Row="1" x:Name="appBarButton" BorderRadius="0"  BorderColor="#FF68217A" BackgroundColor="#FF68217A"  Text="Accept" WidthRequest="100" HorizontalOptions="Start" Clicked="Accept_click" TextColor="White"></Button>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</ContentPage>

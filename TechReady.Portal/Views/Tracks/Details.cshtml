@@ -1,0 +1,66 @@
+﻿@model TechReady.Portal.Models.Track
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Track</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Theme.ThemeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theme.ThemeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackDisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackDisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackAbstract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackAbstract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AudType.TypeOfAudience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AudType.TypeOfAudience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InternalTrackName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InternalTrackName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Format)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Format)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TrackID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,209 @@
+﻿<Page
+    x:Class="TechReady.Views.SpeakerDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechReady.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:coding4Fun="using:Coding4Fun.Toolkit.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    NavigationCacheMode="Enabled">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid Background="{StaticResource PageBackgroundColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid Width="170" Height="61" Margin="0,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Image Source="/Assets/Images/logoTechReady.png"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Image Source="/Assets/Images/hubBackgrundImage.png" Stretch="None"/>
+                </Grid>
+                <ProgressBar IsIndeterminate="True" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="{Binding OperationInProgress,Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{StaticResource TechReadyTitleForeground}" Background="Transparent"/>
+
+                   <!--<TextBlock Visibility="{Binding ShowError,Converter={StaticResource BoolToVisibilityConverter}}" Grid.RowSpan="2" Grid.Row="0" Text="Unable to connect!" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="15" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+
+                <!--<TextBlock Visibility="{Binding ShowError,Converter={StaticResource BoolToVisibilityConverter}}" Grid.RowSpan="2" Grid.Row="0" Text="No upcoming sessions not Available" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="15" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+
+
+                <Pivot x:Name="Pivot" PivotItemLoaded="PivotItemLoaded" >
+                    <PivotItem x:Name="ProfilePivot"  Margin="12,4,12,0">
+                        <PivotItem.Header>
+                            <TextBlock Text="profile" Margin="0,0,24,0" FontWeight="Light" FontFamily="Segoe WP" FontSize="36"/>
+                        </PivotItem.Header>
+                        <ScrollViewer HorizontalScrollMode="Disabled">
+                            <Grid Visibility="{Binding OperationInProgress,Converter={StaticResource BoolToInverseVisibilityConverter}}" >
+                                <StackPanel Margin="5,0,0,0" >
+                                    <TextBlock Text="{Binding Speaker.SpeakerName}" FontWeight="Light" FontFamily="Segoe WP" Foreground="#FF002050" FontSize="36"/>
+
+                                    <Grid Margin="0,4,0,0">
+                                        <!-- Define a three-column grid -->
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="120"/>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <!--<TextBlock  Style="{StaticResource TechReadyFilterEventsPageTextBlock}" Text="Designation/Highlight" FontSize="18" Margin="8,0,0,0"/>-->
+                                        <coding4Fun:SuperImage Grid.Row="0" Grid.Column="0" Height="120" Width="120" Stretch="UniformToFill" PlaceholderImageSource="ms-appx:///Assets/Images/placeholderSpeaker.png" Source="{Binding Speaker.PicUrl}" HorizontalAlignment="Left" VerticalAlignment="Top"  PlaceholderImageStretch="Uniform"  />
+
+                                        <TextBlock Grid.Column="1" Text="{Binding Speaker.Title}" Foreground="{StaticResource TechReadyTitleForeground}"  FontSize="18" FontFamily="Segoe WP" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" Margin="8,0,0,0"/>
+
+                                        <!--The single "real" RichTextBlock contains all content and formatting-->
+                                        <RichTextBlock  FontSize="14.2" FontWeight="ExtraLight" FontFamily="Segoe WP" Foreground="#FF0C0C0C" Grid.Column="1" OverflowContentTarget="{Binding ElementName=o1}" Margin="8,23,0,0" TextWrapping="WrapWholeWords" TextAlignment="Justify">
+
+                                            <Paragraph>
+                                                <Run Text="{Binding Speaker.Profile}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+
+                                        <!-- The 1st overflow element transfers its own overflow -->
+                                        <RichTextBlockOverflow Name="o1" Grid.Row="1" Grid.ColumnSpan="2" />
+
+                                    </Grid>
+
+                                    <StackPanel Tag="{Binding}" Orientation="Vertical" Margin="0,6,0,0">
+                                        <StackPanel  Visibility="{Binding IsLocationAvailable,Converter={StaticResource BoolToVisibilityConverter }}" Orientation="Horizontal" Margin="0,4,0,0">
+                                            <Image Height="20" Width="20" Source="ms-appx:///Assets/Images/Redmond.png" />
+                                            <TextBlock Text="{Binding Speaker.Location}" FontSize="18" FontFamily="Segoe WP" Foreground="#FF0C0C0C" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-2,0,0" />
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="Twitter"  Tag="{Binding}"  Visibility="{Binding IsTwitterLinkAvailable,Converter={StaticResource BoolToVisibilityConverter }}" Orientation="Horizontal" Margin="0,4,0,0" Tapped="SocialLink_Tapped">
+                                            <Image Height="20" Width="20" Source="ms-appx:///Assets/Images/TwitterLoginImage.png" />
+                                            <TextBlock Text="{Binding Speaker.TwitterLink}" FontSize="18" FontFamily="Segoe WP" Foreground="#FF0C0C0C"  Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-2,0,0" />
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="Facebook"  Tag="{Binding}"  Visibility="{Binding IsFacebookLinkAvailable,Converter={StaticResource BoolToVisibilityConverter }}" Orientation="Horizontal" Margin="0,4,0,0" Tapped="SocialLink_Tapped" >
+                                            <Image Height="20" Width="20" Source="ms-appx:///Assets/Images/FacebookLoginImage.png" />
+                                            <TextBlock Text="{Binding Speaker.FacebookLink}" FontSize="18" FontFamily="Segoe WP" Foreground="#FF0C0C0C"  Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-1,0,0" />
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="Linkedin" Tag="{Binding}"  Visibility="{Binding IsLinkedinLinkAvailable,Converter={StaticResource BoolToVisibilityConverter }}" Orientation="Horizontal" Margin="0,4,0,0" Tapped="SocialLink_Tapped">
+                                            <Image Height="22" Width="20" Source="ms-appx:///Assets/Images/Linkedin.png" />
+                                            <TextBlock Text="{Binding Speaker.LinkedinLink}" FontSize="18" FontFamily="Segoe WP" Foreground="#FF0C0C0C"  Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-2,0,0" />
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </PivotItem>
+
+                    <PivotItem x:Name="BlogPivot" Margin="12,0,12,0" >
+                        <PivotItem.Header>
+                            <TextBlock Text="blog" Margin="0,0,24,0" FontWeight="Light" FontFamily="Segoe WP" FontSize="36"/>
+                        </PivotItem.Header>
+                        <ScrollViewer HorizontalScrollMode="Disabled">
+                            <Grid Visibility="{Binding OperationInProgress,Converter={StaticResource BoolToInverseVisibilityConverter}}" >
+                                <TextBlock Visibility="{Binding IsBlogsAvailable,Converter={StaticResource BoolToInverseVisibilityConverter}}" Text="Blogs not available" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="15" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ListView ItemsSource="{Binding Speaker.Blogs}" Visibility="{Binding IsBlogsAvailable,Converter={StaticResource BoolToVisibilityConverter}}" >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Tag="{Binding}" Margin="0,14,0,0" Tapped="Blog_Tapped">
+                                                <TextBlock Grid.Column="1" Text="{Binding Title}" Foreground="{StaticResource TechReadyTitleForeground}"  FontSize="18" FontFamily="Segoe WP" FontWeight="SemiBold" TextWrapping="WrapWholeWords"/>
+                                                <TextBlock VerticalAlignment="Top" MaxHeight="100" Text="{Binding Description}" Style="{StaticResource TechReadyContentTextBlock}" FontSize="16" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" />
+                                                <TextBlock Text="{Binding PublicationTime,Converter={StaticResource UTCTimeToLocalTimeConverter}}" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,4,0,0" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </ScrollViewer>
+                    </PivotItem>
+
+                    <PivotItem x:Name="UpcomingSessionPivot" Margin="12,0,12,0">
+                        <PivotItem.Header>
+                            <TextBlock Text="upcoming sessions" Margin="0,0,24,0" FontWeight="Light" FontFamily="Segoe WP" FontSize="36"/>
+                        </PivotItem.Header>
+                        <ScrollViewer>
+                            <Grid Visibility="{Binding OperationInProgress,Converter={StaticResource BoolToInverseVisibilityConverter}}" >
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Visibility="{Binding IsSessionsAvailable,Converter={StaticResource BoolToInverseVisibilityConverter}}" Text="No upcoming sessions available" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="15" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                                <ListView ItemsSource="{Binding Speaker.SpeakerEvents}" Margin="0,6,0,0">
+                                    <ListView.ItemTemplate>
+                                        <!--<DataTemplate>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0" Source="ms-appx:///Assets/Images/communityEvents.png" Height="100" Width="100" Stretch="UniformToFill" />
+
+                                        <Grid Grid.Column="1" Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Grid.Row="0" Style="{StaticResource TechReadyFilterEventsPageTextBlock}" Text="community Tech Days 2015" FontSize="18" TextWrapping="Wrap"/>
+                                            <TextBlock Grid.Row="1" Text="Document DB | NO SQL | SQL | SQL SERVER | Windows 10" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,3,0,0" FontSize="16"/>
+                                            <TextBlock Grid.Row="2" Text="Delhi" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,10,0,0" FontSize="16"/>
+                                            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                                <TextBlock Text="24 August" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,-4,0,0" FontSize="16"/>
+                                                <TextBlock Text="TO" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-4,0,0" FontSize="16"/>
+                                                <TextBlock Text="25 August" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="4,-4,0,0" FontSize="16"/>
+
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>-->
+
+                                        <DataTemplate>
+                                            <Grid Tag="{Binding}" Tapped="Event_Tapped">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Width="80" Height="80">
+                                                    <Image Source="{Binding EventType,Converter={StaticResource EventTypeToImageConverter}}" Stretch="UniformToFill"></Image>
+                                                </Grid>
+                                                <Grid Grid.Column="1" Margin="12,0,0,0">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding EventName}" Foreground="{StaticResource TechReadyTitleForeground}"  FontSize="18" FontFamily="Segoe WP" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding TechnologiesAbstract}" Foreground="{StaticResource TechReadyTitleForeground}"  FontSize="14" FontFamily="Segoe WP" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding CityName}" Foreground="{StaticResource TechReadyTitleForeground}"  FontSize="14" FontFamily="Segoe WP" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
+                                                        <TextBlock Text="{Binding EventFromTo}" Foreground="{StaticResource TechReadyTitleForeground}"  FontSize="14" FontFamily="Segoe WP" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </ScrollViewer>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </Grid>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar x:Name="CommandBar" Visibility="{Binding ShowCommandBar,Converter={StaticResource BoolToVisibilityConverter}}" RequestedTheme="Dark" Background="{StaticResource TechReadyAppBarBackground}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Visibility="{Binding Speaker.IsFollowed,Converter={StaticResource BoolToVisibilityConverter}}" Label="Unfollow" Icon="Remove" Click="Follow_Click"/>
+                <AppBarButton Label="Follow" Icon="Favorite" Click="Follow_Click" Visibility="{Binding Speaker.IsFollowed,Converter={StaticResource BoolToInverseVisibilityConverter}}"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+</Page>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             x:Class="TechreadyForms.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+            <valueConverters:TimespanToTimeInfoConverter x:Key="TimespanToTimeInfoConverter"/>
+            <valueConverters:EventTypeToImageConverter x:Key="EventTypeToImageConverter"/>
+
+            <Style x:Key="TechReadyContentTextBlock" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="Small"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

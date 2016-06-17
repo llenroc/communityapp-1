@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.LearningResourcesFilteredPage" Title="Filter Learning Resources">
+  
+  <StackLayout Padding="22,8,26,12" Spacing="3">
+    <Label Text="Role"/>
+
+    <helpers:BindablePicker ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedRole,Mode=TwoWay}" />
+
+    <Label Text="Technology"/>
+
+    <helpers:BindablePicker ItemsSource="{Binding Technologies}" SelectedItem="{Binding SelectedTechnology,Mode=TwoWay}" />
+
+    <Label Text="Type"/>
+
+    <helpers:BindablePicker ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType,Mode=TwoWay}" />
+
+
+    <Button x:Name="appBarButton" BorderRadius="0" TextColor="White"  BorderColor="#FF68217A" BackgroundColor="#FF68217A"  Text="Filter" WidthRequest="100" HorizontalOptions="Start" Clicked="AcceptFilter_Click"></Button>
+  </StackLayout>
+</ContentPage>

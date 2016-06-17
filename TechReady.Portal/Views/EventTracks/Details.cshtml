@@ -1,0 +1,83 @@
+﻿@model TechReady.Portal.Models.EventTrack
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventTrack</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.EventName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Track.TrackDisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Track.TrackDisplayName)
+        </dd>
+
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackVenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackVenue)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.TrackDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackDate)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackSeating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackSeating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackOwner)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventTrackID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

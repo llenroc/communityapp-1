@@ -1,0 +1,76 @@
+﻿@model TechReady.Portal.Models.Notification
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Notifications.js"></script>
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Notification</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TypeOfNotification, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NotificationType", (SelectList)ViewBag.NotificationList, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group" id="ActionLinkDiv">
+            @Html.LabelFor(model => model.ActionLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ActionLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ActionLink, "", new { @class = "text-danger" })
+            </div>
+            <div id="ActionLinkError" class="text-danger" style="display: none;margin-left: 125px">Please provide action link</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NotificationTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NotificationTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NotificationTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TechTags, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.ListBox("TechTagNames", (MultiSelectList) ViewBag.PrimaryTechnologies, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div id="TechTagNamesError" class="text-danger" style="display: none;margin-left: 125px">Please select technology tags</div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AudienceTypeTags, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBox("AudienceTypeNames", (MultiSelectList)ViewBag.AudienceTypes, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div id="AudienceTypeNamesError" class="text-danger" style="display: none;margin-left: 125px">Please select audience types</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

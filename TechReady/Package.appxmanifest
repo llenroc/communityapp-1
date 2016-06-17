@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="41549IndiaConferences.IndiaTechCommunity" Publisher="CN=4D498ACD-84E0-4F72-B099-14A886F459C2" Version="1.1.0.20" />
+  <mp:PhoneIdentity PhoneProductId="85767f85-e92e-4cd8-bffd-8d4502cc47b6" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>India Tech Community</DisplayName>
+    <PublisherDisplayName>India Conferences</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TechReady.App">
+      <m3:VisualElements DisplayName="India Tech Community" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="India Tech Community app is your ultimate resource to stay up-to-date on the best of technical content, community events, webinars, hands-on labs, learning resources &amp; other updates on Microsoft technologies including Open Source on Azure. Whether you build, manage or design, the app will deliver curated content customized to your role and preferences.  The app is designed to help you tailor your learning experience towards future-proofing your technical skills." ForegroundText="light" BackgroundColor="white" ToastCapable="true">
+        <m3:DefaultTile Square71x71Logo="Assets\Square71x71Logo.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="white" />
+        <m3:InitialRotationPreference>
+          <m3:Rotation Preference="portrait" />
+        </m3:InitialRotationPreference>
+      </m3:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>

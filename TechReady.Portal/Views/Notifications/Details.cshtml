@@ -1,0 +1,66 @@
+﻿@model TechReady.Portal.Models.Notification
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Notification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfNotification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfNotification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResourceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActionLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotificationTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotificationTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotificationMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotificationMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PushDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PushDateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

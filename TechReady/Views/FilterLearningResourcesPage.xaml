@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="TechReady.Views.FilterLearningResourcesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechReady.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.BottomAppBar>
+        <CommandBar Background="#FF002050" RequestedTheme="Dark">
+            <AppBarButton Icon="Accept" Label="Accept" Click="AcceptFilter_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{StaticResource PageBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" >
+            <Grid Width="170" Height="61" Margin="0,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="/Assets/Images/logoTechReady.png"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="22,0,26,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="filter learning resources" Grid.Row="0" FontFamily="Segoe WP" FontSize="36" Foreground="#FF040404" FontWeight="SemiLight" />
+
+            <StackPanel Grid.Row="1">
+                <StackPanel>
+                    <TextBlock Text="Role" Style="{StaticResource TechReadyFilterEventsPageTextBlock}" />
+                    <ComboBox ItemsSource="{Binding Roles}" RequestedTheme="Light" BorderThickness="1" SelectedValue="{Binding SelectedRole,Mode=TwoWay}" Style="{StaticResource FilterPageComboBox}" Margin="0,-6,0,0" />
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Technology" Style="{StaticResource TechReadyFilterEventsPageTextBlock}" />
+                    <ComboBox ItemsSource="{Binding Technologies}" RequestedTheme="Light" BorderThickness="1" SelectedValue="{Binding SelectedTechnology,Mode=TwoWay}"  Style="{StaticResource FilterPageComboBox}" Margin="0,-6,0,0" />
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Type" Style="{StaticResource TechReadyFilterEventsPageTextBlock}" />
+                    <ComboBox ItemsSource="{Binding Types}" RequestedTheme="Light" BorderThickness="1" SelectedValue="{Binding SelectedType,Mode=TwoWay}" Style="{StaticResource FilterPageComboBox}" Margin="0,-6,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

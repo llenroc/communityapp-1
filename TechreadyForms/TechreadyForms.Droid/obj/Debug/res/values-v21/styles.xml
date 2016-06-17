@@ -1,0 +1,1 @@
+<resources><style name="TechReadyTheme" parent="android:Theme.Material.Light.DarkActionBar"><item name="android:colorAccent">@color/techReadyAccent</item><item name="android:windowBackground">@color/techReadyBackground</item><item name="android:colorPrimary">@color/techReadyAppBar</item><item name="android:colorPrimaryDark">@color/techReadyAppBar</item></style></resources>

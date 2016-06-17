@@ -1,0 +1,74 @@
+﻿@model TechReady.Portal.Models.Feedback
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackAgenda.Event_Track_Session_Speakers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackAgenda.Event_Track_Session_Speakers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameToken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameToken)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakerRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeakerRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverallRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverallRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LTRRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LTRRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Review)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Review)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FeedbackID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

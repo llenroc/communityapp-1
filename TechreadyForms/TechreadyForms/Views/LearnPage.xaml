@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.LearnPage" Title="" >
+
+  <Grid>
+    <WebView BackgroundColor="White" x:Name="WebView"></WebView>
+
+        <ActivityIndicator x:Name="ProgressBar" IsVisible="False"  HorizontalOptions="Center" VerticalOptions="Center" />
+
+        <Label x:Name="ErrorMessage" Text="This page is not available" TextColor="Black" FontSize="Small"  IsVisible="False" XAlign="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+
+  </Grid>
+  
+</ContentPage>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.EventDetails" Title="Event Details" Appearing="EventDetails_OnAppearing">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+
+                <Style x:Key="TechReadyContentTextBlock" TargetType="Label">
+                    <Setter Property="TextColor" Value="Black"/>
+                    <Setter Property="FontSize" Value="Small"/>
+                </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+                <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+
+
+        <ScrollView>
+            <Grid Padding="22,8,26,12" IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" Spacing="3">
+                        <Label Text="{Binding Event.EventName}" TextColor="#002050" FontSize="Large" LineBreakMode="WordWrap"/>
+                        <StackLayout Spacing="0">
+                            <Label Text="Date" Style="{StaticResource TechReadyContentTextBlock}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Event.EventFromTo}" Style="{StaticResource TechReadyContentTextBlock}" />
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <Label Text="Venue" Style="{StaticResource TechReadyContentTextBlock}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Event.VenueCity}" LineBreakMode="WordWrap" Style="{StaticResource TechReadyContentTextBlock}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout  Grid.Row="1" Padding="0,6,0,6" HorizontalOptions="Fill">
+
+                        <Button Text="Register" BorderRadius="0" BorderColor="#FF68217A" BackgroundColor="#FF68217A"  HorizontalOptions="Fill" FontSize="Small" TextColor="White" Clicked="Register_OnClicked" />
+
+                        <Label Text="{Binding Event.EventAbstract}" 
+                    Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap" 
+                     />
+
+                        <StackLayout IsVisible="{Binding HasTracks}">
+                            <!--To Control Visibility of the Events StackPanel-->
+                            <StackLayout IsVisible="{Binding Event.HasMultipleTracks}" Spacing="3">
+                                <Label Text="Note: This event has multiple tracks, Please select the track below to view its agenda and other details" 
+                                    Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap"  FontSize="Micro"
+                                     />
+
+                                <helpers:TracksPicker SelectedItem="{Binding CurrentTrackName,Mode=TwoWay}"  ItemsSource="{Binding Event.Tracks}" SelectedIndexChanged="Track_SelectedIndexChanged" BackgroundColor="#0072c6" HorizontalOptions="Fill"/>
+
+                                <Label Text="{Binding Event.CurrentTrack.TrackVenue}" Style="{StaticResource TechReadyContentTextBlock}" />
+                                <Label Text="{Binding Event.CurrentTrack.TrackAbstract}" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap"/>
+
+                                </StackLayout>
+                        
+
+
+                        <Grid HorizontalOptions="Start" Padding="0,12,0,0">
+                            <Image Source="{helpers:ImageResource TechreadyForms.Images.Agenda.png}" HeightRequest="29" HorizontalOptions="Start"/>
+                        </Grid>
+
+                        
+                        <StackLayout x:Name="AgendaStack">
+                            
+                        </StackLayout>
+
+                        <Grid HorizontalOptions="Start" Padding="0,12,0,0">
+                            <Image Source="{helpers:ImageResource TechreadyForms.Images.speakers_new.png}" HeightRequest="29" HorizontalOptions="Start"/>
+                        </Grid>
+
+                        <ListView ItemsSource="{Binding Event.CurrentTrack.TrackSpeakers}" RowHeight="100" ItemTapped="Speaker_Tapped">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                    <Grid Padding="0,4,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0" Source="{Binding PicUrl}" HeightRequest="100" WidthRequest="100"  Aspect="AspectFill" />
+
+                                        <StackLayout Grid.Column="1" Padding="10,0,0,0" Spacing="0">
+                                                <helpers:CustomLabel MaxLines="1" Grid.Row="0" Text="{Binding SpeakerName}" FontAttributes="Bold" TextColor="Black" LineBreakMode="HeadTruncation"/>
+                                            <helpers:CustomLabel MaxLines="1" Grid.Row="1" Text="{Binding Title}" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="HeadTruncation">
+                                                <helpers:CustomLabel.FontFamily>
+                                                    <OnPlatform x:TypeArguments="x:String">
+                                                        <OnPlatform.iOS></OnPlatform.iOS>
+                                                        <OnPlatform.Android>sans-serif-light</OnPlatform.Android>
+                                                        <OnPlatform.WinPhone></OnPlatform.WinPhone>
+                                                    </OnPlatform>
+                                                    </helpers:CustomLabel.FontFamily>
+                                                </helpers:CustomLabel>
+                                            <helpers:CustomLabel MaxLines="4" Grid.Row="2"  Text="{Binding Profile}" FontSize="Micro"  Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        </StackLayout>
+                    </StackLayout>
+
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

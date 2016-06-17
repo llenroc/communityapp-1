@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             xmlns:global="clr-namespace:;assembly=TechreadyForms"
+             xmlns:dataTemplateSelectors="clr-namespace:TechReady.Helpers.DataTemplateSelectors;assembly=TechreadyForms"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.HubPage" CurrentPageChanged="HubPage_OnCurrentPageChanged" Title="India Tech Community">
+    <TabbedPage.Resources>
+      <ResourceDictionary>
+        <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+        <valueConverters:EventTypeToImageConverter x:Key="EventTypeToImageConverter"/>
+        <valueConverters:LearningResourceThumbnailImageConverter x:Key="LearningResourceThumbnailImageConverter"/>
+        <valueConverters:TimespanToTimeInfoConverter x:Key="TimespanToTimeInfoConverter"/>
+      </ResourceDictionary>
+    </TabbedPage.Resources>
+    <TabbedPage.Children>
+      
+        <ContentPage Title="Attend" Appearing="Attend_OnAppearing">
+            <Grid>
+
+                <Grid.Resources>
+                    <ResourceDictionary>
+
+                        <DataTemplate x:Key="SmallItemTemplate">
+                            <ViewCell>
+                                <ContentView>
+                                    <Grid Padding="0,4,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid WidthRequest="80" HeightRequest="80">
+                                            <Image Source="{Binding EventType, Converter={StaticResource EventTypeToImageConverter}}" Aspect="AspectFill"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Padding="8,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Start">
+                                                <Label Text="{Binding EventName}"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                                <Label Text="{Binding TechnologiesAbstract}" FontSize="11" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Row="1" Spacing="2" VerticalOptions="End">
+                                                <Label Text="{Binding CityName}"  FontSize="12" LineBreakMode="TailTruncation"/>
+                                                <Label Text="{Binding EventFromTo}" FontSize="12" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+
+
+                        <DataTemplate x:Key="SmallLoadMoreItemTemplate">
+                            <ViewCell>
+                                <ContentView>
+                                    <Grid Padding="0,4,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid WidthRequest="80" HeightRequest="80">
+                                            <Image Source="{helpers:ImageResource TechreadyForms.Images.viewMore.png}" Aspect="AspectFill"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Padding="8,0,0,0">
+                                            <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                                <Label Text="View All"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                                <Label Text="Browse all available events" FontSize="11" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+
+                        <dataTemplateSelectors:EventResultItemTemplateSelector x:Key="EventResultItemTemplateSelector" SmallItemTemplate="{StaticResource SmallItemTemplate}" SmallLoadMoreTemplate="{StaticResource SmallLoadMoreItemTemplate}"/>
+                        
+                    </ResourceDictionary>
+                </Grid.Resources>   
+
+                <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+                
+                  
+                    <Grid Padding="4,4,4,4">
+                      <Grid IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}" Padding="10,0,10,0">
+                    <Label Text="Unable to get events, please try again after some time"  Style="{StaticResource TechReadyContentTextBlock}" IsVisible="{Binding AreEventsAvailable,Converter={StaticResource biv}}"  VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap" XAlign="Center"/>
+                      </Grid>
+               
+                        <Grid>
+                    <global:ExtendedListView ItemsSource="{Binding RecommendedEvents}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowHeight="88" ItemTemplateSelector="{StaticResource EventResultItemTemplateSelector}" ItemTapped="Event_ItemTapped" IsVisible="{Binding ShowAll,Converter={StaticResource biv}}">
+                       
+                        
+                    </global:ExtendedListView>
+
+                            <global:ExtendedListView ItemsSource="{Binding AllEvents}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowHeight="88" ItemTemplateSelector="{StaticResource EventResultItemTemplateSelector}" ItemTapped="Event_ItemTapped" IsVisible="{Binding ShowAll}">
+
+
+                            </global:ExtendedListView>
+                    </Grid>
+                </Grid>
+            </Grid>
+            </ContentPage>
+
+        <ContentPage Title="Learn" Appearing="Learn_OnAppearing">
+        <Grid>
+          
+        <Grid.Resources>
+          <ResourceDictionary>
+            
+                        <DataTemplate x:Key="SmallItemTemplate">
+                            <ViewCell>
+                                <ContentView>
+                                    <Grid Padding="0,4,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid WidthRequest="80" HeightRequest="80">
+                                            <Image Source="{Binding Converter={StaticResource LearningResourceThumbnailImageConverter}}" Aspect="AspectFill"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Padding="8,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Start">
+                                                <Label Text="{Binding Title}"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                                <Label Text="{Binding PrimaryTechnologyName}" FontSize="11" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Row="1" Spacing="2" VerticalOptions="End">
+                                                <Label Text="{Binding LearningResourceType}"  FontSize="12" LineBreakMode="TailTruncation"/>
+                                                <Label Text="{Binding PublicationTime, Converter={StaticResource TimespanToTimeInfoConverter}}" FontSize="12" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+
+
+                        <DataTemplate x:Key="SmallLoadMoreItemTemplate">
+                            <ViewCell>
+                                <ContentView>
+                                    <Grid Padding="0,4,0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid WidthRequest="80" HeightRequest="80">
+                                            <Image Source="{helpers:ImageResource TechreadyForms.Images.viewMore.png}" Aspect="AspectFill"/>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Padding="8,0,0,0">
+                                            <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                                <Label Text="View All"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                                <Label Text="Browse all learning resources" FontSize="11" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+
+                        <dataTemplateSelectors:LearningResourceResultItemTemplateSelector x:Key="LearningResourceResultItemTemplateSelector" SmallItemTemplate="{StaticResource SmallItemTemplate}" SmallLoadMoreTemplate="{StaticResource SmallLoadMoreItemTemplate}"/>
+                        
+          </ResourceDictionary>
+        </Grid.Resources>
+          
+                <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+                
+                  
+                    <Grid Padding="4,4,4,4">
+                      <Grid IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}" Padding="10,0,10,0">
+                        <Label Text="Unable to get learning resources, please try again after some time" IsVisible="{Binding AreLearningResourcesAvailable,Converter={StaticResource biv}}"  Style="{StaticResource TechReadyContentTextBlock}" VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap" XAlign="Center"/>
+                      </Grid>
+
+                
+                    <global:ExtendedListView ItemsSource="{Binding RecommendedLearningResources}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowHeight="88" ItemTemplateSelector="{StaticResource LearningResourceResultItemTemplateSelector}" ItemTapped="LearningResource_ItemTapped" IsVisible="{Binding ShowAll,Converter={StaticResource biv}}">
+                       
+                        
+                    </global:ExtendedListView>
+
+                    <global:ExtendedListView ItemsSource="{Binding AllLearningResources}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowHeight="88" ItemTemplateSelector="{StaticResource LearningResourceResultItemTemplateSelector}" ItemTapped="LearningResource_ItemTapped" IsVisible="{Binding ShowAll}">
+
+
+                    </global:ExtendedListView>
+                
+                </Grid>
+        </Grid>
+      </ContentPage>
+      
+      <ContentPage Title="Inbox" Appearing="Inbox_OnAppearing">
+        <Grid>
+          <Grid.Resources>
+            <ResourceDictionary>
+              
+              <DataTemplate x:Key="InboxItemTemplate">
+                <ViewCell>
+                  <ContentView>
+                                    
+                      <Grid Padding="0,4,0,4">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="*"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid WidthRequest="20" HeightRequest="20" VerticalOptions="Start">
+                          <Image Source="{helpers:ImageResource TechreadyForms.Images.UnReadIcon.png}" IsVisible="{Binding Read,Converter={StaticResource biv}}"  WidthRequest="20" HeightRequest="20" Aspect="AspectFit"/>
+                          <Image Source="{helpers:ImageResource TechreadyForms.Images.ReadIcon.png}" IsVisible="{Binding Read}"  WidthRequest="20" HeightRequest="20" Aspect="AspectFit"/>
+                        </Grid>
+                        <StackLayout Grid.Column="1" Padding="8,0,0,0">
+                          <helpers:CustomLabel MaxLines="2" Grid.Column="1" Text="{Binding Title}" FontSize="Small" HorizontalOptions="FillAndExpand" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap">
+                          </helpers:CustomLabel>
+                          <Label Text="{Binding PushDateTime,Converter={StaticResource TimespanToTimeInfoConverter}}" VerticalOptions="Start" HorizontalOptions="Start" FontSize="Micro" LineBreakMode="NoWrap"/>
+                        </StackLayout>
+                      </Grid>
+                  </ContentView>
+                </ViewCell>
+              </DataTemplate>
+
+            </ResourceDictionary>
+          </Grid.Resources>
+          
+          <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+          <Grid Padding="4,4,4,4">
+
+            <Grid IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}" Padding="10,0,10,0">
+              <Label Text="No messages to display"  Style="{StaticResource TechReadyContentTextBlock}" IsVisible="{Binding AreNotificationsAvailable,Converter={StaticResource biv}}"  VerticalOptions="Center" HorizontalOptions="Center" LineBreakMode="WordWrap"  XAlign="Center"/>
+            </Grid>
+            <!--<ScrollView>
+              <StackLayout>-->
+                <global:ExtendedListView ItemsSource="{Binding AllShownNotifications}" HorizontalOptions="FillAndExpand" ItemTemplate="{StaticResource InboxItemTemplate}" VerticalOptions="FillAndExpand" RowHeight="64" ItemTapped="Notification_Tapped" IsVisible="{Binding AreNotificationsAvailable}" />
+              <!--</StackLayout>
+            </ScrollView>-->
+          </Grid>
+        </Grid>
+      </ContentPage>
+
+      <ContentPage Title="MyZone" Appearing="MyZone_OnAppearing">
+            <Grid>
+                <ScrollView>
+
+                    <Grid Padding="4,4,4,4"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Padding="0,4,0,4">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FollowedEvents_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="80" HeightRequest="80">
+                                <Image Source="{helpers:ImageResource TechreadyForms.Images.FavoriteEvents.png}" Aspect="AspectFill"/>
+                            </Grid>
+                            <Grid Grid.Column="1" Padding="8,0,0,0">
+                                <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                    <Label Text="Followed Events"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Row="4" Padding="0,4,0,4">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Feedback_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="80" HeightRequest="80">
+                                <Image Source="{helpers:ImageResource TechreadyForms.Images.Feedback.png}" Aspect="AspectFill"/>
+                            </Grid>
+                            <Grid Grid.Column="1" Padding="8,0,0,0">
+                                <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                    <Label Text="Feedback"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Row="2" Padding="0,4,0,4">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Settings_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="80" HeightRequest="80">
+                                <Image Source="{helpers:ImageResource TechreadyForms.Images.Settings.png}" Aspect="AspectFill"/>
+                            </Grid>
+                            <Grid Grid.Column="1" Padding="8,0,0,0">
+                                <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                    <Label Text="Settings"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Row="3" Padding="0,4,0,4">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Speakeers_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="80" HeightRequest="80">
+                                <Image Source="{helpers:ImageResource TechreadyForms.Images.Speakers.png}" Aspect="AspectFill"/>
+                            </Grid>
+                            <Grid Grid.Column="1" Padding="8,0,0,0">
+                                <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                    <Label Text="Speakers"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+
+                        <!--<Grid Row="4" Padding="0,4,0,4">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="WatchedVideos_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="80" HeightRequest="80">
+                                <Image Source="{helpers:ImageResource TechreadyForms.Images.WatchedVideos.png}" Aspect="AspectFill"/>
+                            </Grid>
+                            <Grid Grid.Column="1" Padding="8,0,0,0">
+                                <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                    <Label Text="Recently Viewed Resources"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>-->
+
+                        <Grid Row="5" Padding="0,4,0,4">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FollowedSpeakeers_Tapped"></TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid WidthRequest="80" HeightRequest="80">
+                                <Image Source="{helpers:ImageResource TechreadyForms.Images.Speakers.png}" Aspect="AspectFill"/>
+                            </Grid>
+                            <Grid Grid.Column="1" Padding="8,0,0,0">
+                                <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Center">
+                                    <Label Text="Followed Speakers"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                </StackLayout>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                </ScrollView>
+            </Grid>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

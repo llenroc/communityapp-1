@@ -1,0 +1,143 @@
+﻿@model IEnumerable<TechReady.Portal.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Upcoming Events</h2>
+
+<div>
+    <ul class="nav navbar-nav">
+        <li>
+            @Html.ActionLink("Past Events", "Index", "Events")
+        </li>
+        <li>
+            @Html.ActionLink("Create a new event", "CreateEvent", "Event")
+        </li>
+    </ul>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.City.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.EventFromDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventToDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventVenue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegLink)
+        </th>
+        @*<th>
+        @Html.DisplayNameFor(model => model.MaxCapacity)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.ScEligibility)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.RegCapacity)
+    </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.PubtoMSCOM)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.PostRegistered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostAttended)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostManualOverallRating)
+        </th>*@
+        <th>
+          @Html.DisplayNameFor(model => model.EventOwner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventStatus)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.EventVisibility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventType)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.City.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventFromDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventToDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventVenue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegLink)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.MaxCapacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScEligibility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegCapacity)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.PubtoMSCOM)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PostRegistered)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostAttended)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostManualOverallRating)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.EventOwner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventStatus)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.EventVisibility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventType)
+        </td>*@
+        <td>
+            
+            @*@Html.ActionLink("Modify event details", "Edit") |
+            @Html.ActionLink("View details", "Details") |
+            @Html.ActionLink("Delete", "Delete")   |*@
+            @Html.ActionLink("Modify event details", "CreateEvent","Event", new { id=item.EventID },null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })   |
+
+
+        </td>
+    </tr>
+}
+
+</table>

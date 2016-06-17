@@ -1,0 +1,486 @@
+﻿<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<script type="text/javascript">
+    var EventID = @(ViewBag.EventID);
+</script>
+
+<link rel="stylesheet" href="~/Content/kendo/kendo.common.min.css" />
+<link rel="stylesheet" href="~/Content/kendo/kendo.default.min.css" />
+<link rel="stylesheet" href="~/Content/Site.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/Scripts/CreateEventModule.js"></script>
+<script type="text/javascript">
+//varun
+        Date.prototype.toJSON = function () {
+            return kendo.toString(this, "yyyy-MM-ddTHH:mm:ss");
+        };
+</script>
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<div class="container" ng-app="CreateEventModule" ng-controller="CreateEventController">
+    <h2 ng-if="!modifyEvent">Create</h2>
+    <h2 ng-if="modifyEvent">Modify</h2>
+    <h4>Event</h4>
+    <hr />
+
+    <form name="CreateEventForm">
+
+        <div class="row">
+            <div class="col-md-4 event-col">
+                <div class="form-group">
+                    <label for="InputEventName" class="control-label user-ui-label">Event Name</label>
+                    <div>
+                        <input type="text" class="form-control" name="EventName" id="InputEventName" ng-model="event.EventName" ng-maxlength="20" required />
+                        <span class="text-danger" ng-if="(CreateEventForm.EventName.$dirty || formSubmitted) && CreateEventForm.EventName.$error.required">Event Name Required</span>
+                        <span class="text-danger" ng-if="(CreateEventForm.EventName.$dirty || formSubmitted) && CreateEventForm.EventName.$error.maxlength">Event Name length should be less than 20</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="InputEventAbstract" class="control-label user-ui-label">About the event</label>
+                    <div>
+                        <textarea name="EventAbstract" class="form-control" id="InputEventAbstract" ng-model="event.EventAbstract" maxlength="1000"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="InputCityName" class="control-label user-ui-label">City Name</label>
+                    <div>
+                        <select class="form-control" ng-model="event.CityName" id="InputCityName">
+                            <option ng-selected="{{city.CityName == event.CityName}}" ng-repeat="city in AvailableCities" value="{{city.CityName}}">{{city.CityName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group div-date-time-picker">
+                    <label for="InputEventFromDate" class="control-label user-ui-label">Date (from)</label>
+                    <div class="">
+                        @*<input type="datetime" class="form-control" id="InputEventFromDate" ng-model="event.EventFromDate  | date: 'MM-dd-yyyy'" placeholder="MM-dd-yyyy" />*@
+                        <input kendo-date-picker
+                               k-ng-model="event.EventFromDate"
+                               format="MM-dd-yyyy"
+                               k-format="MM-dd-yyyy"
+                               style="width: 72%; height: 30px" />
+
+                    </div>
+                </div>
+
+                <div class="form-group div-date-time-picker">
+                    <label for="InputEventToDate" class="control-label user-ui-label">Date (to)</label>
+                    <div class="">
+                        @*<input type="text" class="form-control" name="EventToDate" id="InputEventToDate" ng-model="event.EventToDate  | date: 'MM-dd-yyyy'" placeholder="MM-dd-yyyy" />*@
+                        <input kendo-date-picker
+                               k-ng-model="event.EventToDate"
+                               format="MM-dd-yyyy"
+                               name="EventToDate"
+                               style="width: 72%; height: 30px" />
+                        <span ng-show="(CreateEventForm.EventToDate.$dirty || formSubmitted)">
+                            <span ng-if="event.toDate < event.fromDate" class="text-danger">Should greater than Date (from)</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEventVenue" class="control-label user-ui-label">Venue</label>
+                    <div>
+                        <input type="text" class="form-control" name="EventVenue" id="InputEventVenue" ng-model="event.EventVenue" required />
+                        <span ng-show="(CreateEventForm.EventVenue.$dirty || formSubmitted)">
+                            <span class="text-danger" ng-if="CreateEventForm.EventVenue.$error.required">Event Venue Required</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 event-col">
+                <div class="form-group">
+                    <label for="InputRegLink" class="control-label">Registration Link</label>
+                    <div>
+                        <input type="text" class="form-control" name="RegLink" id="InputRegLink" ng-model="event.RegLink" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputMaxCapacity" class="control-label">[Internal use] Max capacity (Enter a number)</label>
+                    <div>
+                        <input type="number" class="form-control" name="MaxCapacity" id="InputMaxCapacity" min="1" max="5000" ng-model="event.MaxCapacity" ng-init="event.MaxCapacity" ng-pattern="numRegex" required />
+                        <span ng-show="(CreateEventForm.MaxCapacity.$dirty || formSubmitted)">
+                            <span class="text-danger" ng-if="CreateEventForm.MaxCapacity.$error.required">Max Capacity Required</span>
+                            <span class="text-danger" ng-if="CreateEventForm.MaxCapacity.$error.pattern">number type only</span>
+                            <span class="text-danger" ng-show="(CreateEventForm.MaxCapacity.$error.min || CreateEventForm.MaxCapacity.$error.max)">Range in 1-5000</span>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="InputScEligibility" class="control-label">[Internal use] Scorecard Eligibility</label>
+                    <div>
+                        <select ng-model="event.EventScEligibilityObj" class="form-control" name="ScEligibility" id="InputScEligibility" ng-options="obj.Value for obj in ScEligibility track by obj.Key">
+                        </select>
+
+                        <span ng-show="(CreateEventForm.ScEligibility.$dirty || formSubmitted) ">
+                            <span class="text-danger" ng-if="CreateEventForm.ScEligibility.$error.required">Scorecard Eligibility Required</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputRegCapacity" class="control-label">[Internal use] Registration Capacity</label>
+                    <div>
+                        <input type="number" class="form-control" name="RegCapacity" id="InputRegCapacity" min="1" max="5000" ng-model="event.RegCapacity" ng-init="event.RegCapacity" ng-pattern="numRegex" required />
+                        <span ng-show="(CreateEventForm.RegCapacity.$dirty || formSubmitted)">
+                            <span class="text-danger" ng-if="CreateEventForm.RegCapacity.$error.required">Registration Capacity Required</span>
+                            <span class="text-danger" ng-if="CreateEventForm.RegCapacity.$error.pattern">number type only</span>
+                            <span class="text-danger" ng-show="(CreateEventForm.RegCapacity.$error.min || CreateEventForm.RegCapacity.$error.max)">Range in 1-5000</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputPubtoMSCOM" class="control-label">[Internal use] Publish to WWE</label>
+                    <div>
+                        <input type="checkbox" name="PubtoMSCOM" id="InputPubtoMSCOM" ng-model="event.PubtoMSCOM" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputPostRegistered" class="control-label">[Internal Use] Post Registered</label>
+                    <div>
+                        <input type="number" class="form-control" name="PostRegistered" id="InputPostRegistered" min="1" max="5000" ng-model="event.PostRegistered" ng-init="event.PostRegistered" ng-pattern="numRegex" />
+                        <span ng-show="(CreateEventForm.PostRegistered.$dirty || formSubmitted) ">
+                            <span class="text-danger" ng-if="CreateEventForm.PostRegistered.$error.pattern">number type only</span>
+                            <span class="text-danger" ng-show="(CreateEventForm.PostRegistered.$error.min || CreateEventForm.PostRegistered.$error.max)">Range 1-5000</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="isEventGlobal" class="control-label">Global Event</label>
+                    <div>
+                        <input type="checkbox" name="isEventGlobal" id="isEventGlobal" ng-model="event.IsGlobal" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 event-col">
+                <div class="form-group">
+                    <label for="InputPostAttended" class="control-label">[Internal Use] Post Attended</label>
+                    <div>
+                        <input type="number" class="form-control" name="PostAttended" id="InputPostAttended" min="1" max="5000" ng-model="event.PostAttended" ng-init="event.PostAttended" ng-pattern="numRegex" />
+                        <span ng-show="(CreateEventForm.PostAttended.$dirty || formSubmitted) ">
+                            <span class="text-danger" ng-if="CreateEventForm.PostAttended.$error.pattern">number type only</span>
+                            <span class="text-danger" ng-show="(CreateEventForm.PostAttended.$error.min || CreateEventForm.PostAttended.$error.max)">Range 1-5000</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputPostManualOverallRating" class="control-label">[Internal Use] Overall Manual Event Rating</label>
+                    <div>
+                        <input type="number" class="form-control" name="PostManualOverallRating" id="InputPostManualOverallRating" min="1" max="10" ng-model="event.PostManualOverallRating" ng-init="event.PostManualOverallRating" ng-pattern="numRegex" />
+                        <span ng-show="(CreateEventForm.PostManualOverallRating.$dirty || formSubmitted) ">
+                            <span class="text-danger" ng-if="CreateEventForm.PostManualOverallRating.$error.pattern">number type only</span>
+                            <span class="text-danger" ng-show="(CreateEventForm.PostManualOverallRating.$error.min || CreateEventForm.PostManualOverallRating.$error.max)">Range 1-10</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEventOwner" class="control-label">[Internal use] AMM Owner</label>
+                    <div>
+                        <input type="text" class="form-control" name="EventOwner" id="InputEventOwner" ng-model="event.EventOwner" required />
+                        <span ng-show="(CreateEventForm.EventOwner.$dirty || formSubmitted )">
+                            <span class="text-danger" ng-if="CreateEventForm.EventOwner.$error.required">Event Owner AMM Required</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEventStatus" class="control-label">Event Status</label>
+                    <div>
+                        <select ng-model="event.EventStatusObj" class="form-control" name="EventStatus" id="InputEventStatus" ng-options="obj.Value for obj in EventStatus track by obj.Key">
+                        </select>
+                        <span ng-show="(CreateEventForm.EventStatus.$dirty || formSubmitted) ">
+                            <span class="text-danger" ng-if="CreateEventForm.EventStatus.$error.required">Event Status Required</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEventVisibility" class="control-label">Event Visibility</label>
+                    <div>
+                        <select ng-model="event.EventVisibilityObj" class="form-control" name="EventVisibility" id="InputEventVisibility" ng-options="obj.Value for obj in EventVisibility track by obj.Key">
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEventType" class="control-label">[Internal Use] Event Type</label>
+                    <div>
+                        <select ng-model="event.EventTypeObj" class="form-control" name="EventType" id="InputEventType" ng-options="obj.Value for obj in EventType track by obj.Key" required>
+                        </select>
+                        <span ng-show="(CreateEventForm.EventType.$dirty || formSubmitted)">
+                            <span ng-if="CreateEventForm.EventType.$error.required" class="text-danger">Event Type Required</span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div>
+        <div>
+            <h4>Event Track</h4>
+            <a href="" id="add-track">Add track</a> |
+            <a href="" id="select-technolog-tags" ng-click="openTechnoLogDialog()" ng-if="eventTrackList.length == 0">Event TechnoLog Tags: </a>
+            <span ng-if="eventTrackList.length == 0"><label style="margin-left: 3px" ng-repeat="technologTags in eventTechnologTags">{{technologTags.PrimaryTech}},</label></span>
+            <a href="" id="select-audiencetype-tags" ng-click="openAudienceTypeDialog()" ng-if="eventTrackList.length == 0">Event Audience Type Tags: </a>
+            <span ng-if="eventTrackList.length == 0"><label style="margin-left: 3px" ng-repeat="audienceTypeTag in eventAudienceTypeTags">{{audienceTypeTag.TypeOfAudience}},</label></span>
+
+            <hr />
+
+            <div class="row tracks-container" style="display: none">
+                <div class="col-md-2 form-group">
+                    <h6><strong>Track</strong></h6>
+                </div>
+                <div class="col-md-1 form-group">
+                    <h6><strong>Venue</strong></h6>
+                </div>
+
+                <div class="col-md-2 form-group">
+                    <h6><strong>StartTime</strong></h6>
+                </div>
+
+                <div class="col-md-2 form-group">
+                    <h6><strong>EndTime</strong></h6>
+                </div>
+
+                <div class="col-md-1 form-group">
+                    <h6><strong>Seating</strong></h6>
+                </div>
+
+                <div class="col-md-1 form-group">
+                    <h6><strong>Owner</strong></h6>
+                </div>
+            </div>
+
+
+
+            <div class="container tracks-container">
+
+                <div class="row" id="show_added_tracks" ng-repeat="editEventTrack in eventTrackList">
+                    <div class="row">
+
+                        <div class="col-md-2 form-group">
+                            <div>{{editEventTrack.TrackDisplayName}}</div>
+                        </div>
+
+                        <div class="col-md-1 form-group">
+                            <div>{{editEventTrack.TrackVenue}}</div>
+                        </div>
+
+                        <div class="col-md-2 form-group">
+                            <div>{{editEventTrack.TrackStartTime  | date: 'dd/MM/yyyy hh:mm a'}}</div>
+                        </div>
+
+                        <div class="col-md-2 form-group">
+                            <div>{{editEventTrack.TrackEndTime | date: 'dd/MM/yyyy hh:mm a'}}</div>
+                        </div>
+
+                        <div class="col-md-1 form-group">
+                            <div>{{editEventTrack.TrackSeating}}</div>
+                        </div>
+
+                        <div class="col-md-1 form-group">
+                            <div>{{editEventTrack.TrackOwner}}</div>
+                        </div>
+
+                        <div class="col-md-2 form-group">
+                            <a href="" ng-click="eventTrackEdit(editEventTrack,$index)">Edit</a> |
+                            <a href="" id="add-session" class="active" ng-click="getSessions($index,editEventTrack.TrackID)" ng-disabled="inactiveLink">Sessions</a> |
+                            <a href="" ng-click="deleteTrack(editEventTrack.TrackID)">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="!showNewTrackView" style="margin-top: 100px">
+                <div class="col-md-offset-5 col-md-10">
+                    <input type="button" value="Save Event" ng-click="createEvent()" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dialog-form-newTrack" title="Create new track">
+
+        <form name="newEventTrackForm">
+            <fieldset>
+                <div class="row div-event-track" id="div_event_track">
+                    <div class="form-group">
+                        <label for="InputTrackID" class="control-label user-ui-label">Track</label>
+                        <div ng-if="!eventTrack.editMode">
+                            <select class="form-control" ng-model="eventTrack.TrackID" ng-change="changeTrackDispName(eventTrack.TrackID)" name="TrackID" id="InputTrackID">
+                                <option ng-repeat="track in Tracks" value="{{track.TrackID}}">{{track.TrackDisplayName}}</option>
+                            </select>
+                        </div>
+                        <div ng-if="eventTrack.editMode">{{eventTrack.TrackDisplayName}}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputTrackVenue" class="control-label user-ui-label">Venue</label>
+                        <div>
+                            <input type="text" class="form-control" ng-model="eventTrack.TrackVenue" name="TrackVenue" id="InputTrackVenue" required />
+                            <span ng-show="(newEventTrackForm.TrackVenue.$dirty && newEventTrackForm.TrackVenue.$error.required)" class="text-danger">Venue Required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group div-date-time-picker">
+                        <label for="InputTrackStartTime" class="control-label">Start Date Time</label>
+                        <div>
+                            @*<input type="text" class="form-control" ng-model="eventTrack.TrackStartTime | date: 'MM/dd/yyyy  HH:mm'" name="StartDateTime" id="InputStartDateTime" placeholder="MM/dd/yyyy  h:mma" required/>*@
+                            <input kendo-date-time-picker
+                                   k-ng-model="eventTrack.TrackStartTime"
+                                   k-format="'dd/MM/yyyy HH:mm:ss'"
+                                   name="StartDateTime"
+                                   style="width: 75%; height: 27px" required />
+
+                            <span ng-show="(newEventTrackForm.StartDateTime.$dirty && newEventTrackForm.StartDateTime.$error.required)" class="text-danger">Start Date Time Required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group div-date-time-picker">
+                        <label for="InputTrackEndTime" class="control-label">End Date Time</label>
+                        <div>
+                            @*<input type="text" class="form-control" ng-model="eventTrack.TrackEndTime  | date: 'MM/dd/yyyy  HH:mm'" name="TrackEndTime" id="InputTrackEndTime" placeholder="MM/dd/yyyy  h:mma" required/>*@
+                            <input kendo-date-time-picker
+                                   k-ng-model="eventTrack.TrackEndTime"
+                                   k-format="'dd/MM/yyyy HH:mm:ss'"
+                                   name="TrackEndTime"
+                                   style="width: 75%; height: 27px" required />
+                            <span ng-show="(newEventTrackForm.TrackEndTime.$dirty && newEventTrackForm.TrackEndTime.$error.required)" class="text-danger">End Date Time Required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputTrackSeating" class="control-label">Seating</label>
+                        <div>
+                            <input type="number" class="form-control" ng-model="eventTrack.TrackSeating" ng-init="eventTrack.TrackSeating" min="1" max="5000" name="TrackSeating" id="InputTrackSeating" required />
+                            <span ng-show="(newEventTrackForm.TrackSeating.$dirty && newEventTrackForm.TrackSeating.$error.required)" class="text-danger">Track Seating Required</span>
+                            <span class="text-danger" ng-if="(newEventTrackForm.TrackSeating.$error.min || newEventTrackForm.TrackSeating.$error.max)">Range  1-5000 </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputTrackOwner" class="control-label">Track Owner</label>
+                        <div>
+                            <input type="text" class="form-control" ng-model="eventTrack.TrackOwner" name="TrackOwner" id="InputTrackOwner" required />
+                            <span ng-show="(newEventTrackForm.TrackOwner.$dirty && newEventTrackForm.TrackOwner.$error.required)" class="text-danger">Track Owner Required</span>
+                        </div>
+                    </div>
+                    <div class="text-danger" ng-if="!AllFieldsValid">All values are required!!</div>
+                    <div class="form-control btn btn-default save-button" ng-click="addTrack(eventTrack.TrackID, currentEventIndex)">save</div>
+                    <div class="form-control btn btn-default save-button" ng-click="cancelAddTrack()">cancel</div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="dialog-form-sessions" title="Create sessions">
+        <form name="createSessionForm">
+            <fieldset>
+                <div class="row">
+                    <label class="col-md-3 control-label"><span class=" user-ui-label">Session Name</span></label>
+                    <label class="col-md-3 control-label"><span class=" user-ui-label">Speaker</span></label>
+                    <label class="col-md-3 control-label"><span class=" user-ui-label">Start Time</span></label>
+                    <label class="col-md-3 control-label"><span class=" user-ui-label">End Time</span></label>
+                </div>
+                    <div class="row" ng-repeat="trackAgenda in editTrackAgendas track by $index">
+                        <ng-form name="createSessionForm{{$index}}" class="create-session-form">
+                                <input type="number" ng-model="trackAgenda.SessionID" ng-init="trackAgenda.SessionID=trackAgenda.SessionID" style="display: none" />
+                                <div class="col-md-3 form-group div-trackagenda-title">
+
+                                        <span id="spanSessionTitle">{{trackAgenda.Title}}</span>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <select ng-model="trackAgenda.Speaker" class="form-control" ng-options="obj.SpeakerName for obj in Speakers track by obj.SpeakerID"></select>
+                                </div>
+                                <div class="col-md-3 form-group">
+
+                                    <div>
+                                        <input kendo-date-time-picker
+                                               k-ng-model="trackAgenda.StartTime"
+                                               k-format="'dd/MM/yyyy HH:mm'"
+                                               name="AgendaStartTime"
+                                               style="width: 110%; margin : 0px;" required />
+
+                                        <span ng-show="{{'createSessionForm' + $index}}.AgendaStartTime.$error.required" class="text-danger">Start Time Required</span>
+                                        <span ng-show="{{'createSessionForm' + $index}}.AgendaStartTime.$error.time" class="text-danger">Not Valid Time</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+
+                                    <div>
+                                        <input kendo-date-time-picker
+                                               k-ng-model="trackAgenda.EndTime"
+                                               k-format="'dd/MM/yyyy HH:mm'"
+                                               name="AgendaEndTime"
+                                               style="width: 110%; margin : 0px;" required />
+                                        <span ng-show="{{'createSessionForm' + $index}}.AgendaEndTime.$error.required" class="text-danger">End Time Required</span>
+                                        <span ng-show="{{'createSessionForm' + $index}}.AgendaEndTime.$error.time" class="text-danger">Not Valid Time!</span>
+                                    </div>
+                                </div>
+                        </ng-form>
+                        <div class="text-danger" ng-if="trackAgenda.allFieldsValid">    All fields are Required!!</div>
+                    </div>
+                    <div class="session-button">
+                        <div class="btn btn-default col-md-3" style="margin-left: 90px" ng-click="saveSessions(currentSessionIndex)">save</div>
+                        @*<div class="btn btn-default" ng-click="cancelSaveSessions()">cancel</div>*@
+                    </div>
+            </fieldset>
+        </form>
+    </div>
+
+    @* varun*@
+<div id="dialog-form-eventTechnoLogTags" title="Event TechnoLog Tags">
+    <form name="selectTechnologForm">
+        <fieldset>
+            <div>
+                <label class="control-label">Select Event TechnoLog Tags</label>
+            </div>
+            <div>
+                <select multiple ng-multiple="true" ng-model="eventTechnologTags" class="form-control" name="EventTechnologTags" id="InputEventTechnologTags" ng-options="obj.PrimaryTech for obj in EventTechnologTags track by obj.PrimaryTechnologyID"></select>
+            </div>
+            <div class="btn btn-default col-md-3" ng-click="saveTechnoLogTag()" style="margin-top: 8px;">save</div>
+        </fieldset>
+    </form>
+</div>
+
+    <div id="dialog-form-eventAudienceTypeTags" title="Event Audience Type Tags">
+        <form name="selectAudienceTypeForm">
+            <fieldset>
+                <div>
+                    <label class="control-label">Select Event Audience Types Tags</label>
+                </div>
+                <div>
+                    <select multiple ng-multiple="true" ng-model="eventAudienceTypeTags" class="form-control" name="EventAudienceTypeTags" id="InputEventAudienceTypeTags" ng-options="obj.TypeOfAudience for obj in EventAudienceTypeTags track by obj.AudienceTypeID"></select>
+                </div>
+                <div class="btn btn-default col-md-3" ng-click="saveAudienceTypeTag()" style="margin-top: 8px;">save</div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+    @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    }

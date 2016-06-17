@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.LoginPage" Title="Login">
+  <ScrollView>
+    <Grid BackgroundColor="White">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+
+        <!--<Grid Grid.Row="0">
+            <Grid WidthRequest="160" HeightRequest="56" Padding="0,0,12,0" HorizontalOptions="End"  VerticalOptions="Start">
+                <Image Source="{helpers:ImageResource TechreadyForms.Images.logoTechReady.png}"/>
+            </Grid>
+        </Grid>-->
+        <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+
+
+        <Grid IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}">
+            <StackLayout Padding="0,0,0,12">
+
+                        <Grid HorizontalOptions="Center" Padding="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="140"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Image Source="{helpers:ImageResource TechreadyForms.Images.Logo.png}" Aspect="AspectFit"/>
+                        </Grid>
+                        </Grid>
+                <ContentView Padding="0,6,0,16" HorizontalOptions="Center">
+                    <Label FontSize="Default" XAlign="Center" HorizontalOptions="Center"
+                       Text="Welcome to India Tech Community." />
+                    <!--<Label FontSize="Default" XAlign="Center"
+                       Text="Welcome to India Tech Community. Please login using any provider below &amp; register, this will help us improve your experience." />-->
+                </ContentView>
+                <Grid HorizontalOptions="Center" Padding="0,24,0,12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" HorizontalOptions="Center" HeightRequest="96">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Microsoft_Tapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Image Source="{helpers:ImageResource TechreadyForms.Images.MicrosoftLoginImage.png}"/>
+                        </Grid>
+                        <Grid Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End">
+                            <StackLayout Spacing="0">
+                                <Label Text="LOGIN WITH"  FontSize="Default" VerticalOptions="Start" HorizontalOptions="End"/>
+                                <Label Text="MICROSOFT"  FontSize="Default" VerticalOptions="Start" HorizontalOptions="End"/>
+                                <Label Text="ACCOUNT"  FontSize="Default" VerticalOptions="Start" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                  
+                    <Grid Grid.Row="1" HorizontalOptions="Center" HeightRequest="96">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Facebook_Tapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid HorizontalOptions="Start" VerticalOptions="Center">
+                          <StackLayout Spacing="0">
+                            <Label Text="LOGIN WITH" FontSize="Default" HorizontalOptions="Start"  VerticalOptions="Center"/>
+                            <Label Text="FACEBOOK" FontSize="Default" HorizontalOptions="Start"  VerticalOptions="Center"/>
+                          </StackLayout>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Image Source="{helpers:ImageResource TechreadyForms.Images.FacebookLoginImage.png}"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="2" HorizontalOptions="Center" HeightRequest="96">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Twitter_Tapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Image Source="{helpers:ImageResource TechreadyForms.Images.TwitterLoginImage.png}"/>
+                        </Grid>
+                        <Grid Grid.Column="1" VerticalOptions="End" HorizontalOptions="End">
+                          <StackLayout Spacing="0">
+                            <Label Text="LOGIN WITH" FontSize="Default" VerticalOptions="End" HorizontalOptions="End"/>
+                            <Label Text="TWITTER" FontSize="Default" VerticalOptions="End" HorizontalOptions="End"/>
+                          </StackLayout>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+            </StackLayout>
+        </Grid>
+    </Grid>
+  </ScrollView>
+</ContentPage>

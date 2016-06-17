@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             x:Class="TechreadyForms.Views.FeedbackPage"
+             Title="Feedback"
+             Appearing="Feedback_OnAppearing">
+    <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+    <ScrollView>
+        <Grid Grid.Row="1" Padding="22,20,26,12">
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+
+            <Label Text="{Binding ResponseMessage}" IsVisible="{Binding ShowMessage}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+                 
+
+            <StackLayout IsVisible="{Binding ShowMessage,Converter={StaticResource biv}}">
+
+
+                <Label Text="Name"></Label>
+                <Entry  Text="{Binding UserName , Mode=TwoWay}" TextColor="Black"/>
+
+
+                <Label Text="Email"></Label>
+
+                <Entry Text="{Binding Email , Mode=TwoWay}" TextColor="Black"/>
+
+                <Label Text="Feedback Type"/>
+
+                <helpers:BindablePicker ItemsSource="{Binding FeedbackTypes}" SelectedItem="{Binding SelectedFeedbackType , Mode=TwoWay}" />
+
+
+
+                <Label Text="Feedback"/>
+                <!--<Entry Text="{Binding Feedback , Mode=TwoWay}" TextColor="Black"/>-->
+             <Grid HeightRequest="125">
+                <Editor Text="{Binding Feedback , Mode=TwoWay}" TextChanged="OnTextChanged"/>
+             </Grid>
+               
+             
+              
+
+
+                <Grid Padding="0,15,0,0">
+                    <Button x:Name="appBarButton" BorderRadius="0"  BorderColor="#FF68217A" BackgroundColor="#FF68217A"  Text="Accept" Clicked="SubmitFeedback" WidthRequest="100" HorizontalOptions="Start" TextColor="White"></Button>
+                </Grid>
+
+            </StackLayout>
+
+        </Grid>
+
+    </ScrollView>
+
+</ContentPage>

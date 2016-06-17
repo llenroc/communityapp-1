@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TechReady.Portal.Models.AudienceOrg">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAA=</HashCode>
+      <FileName>Models\AudienceOrg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.AudienceType">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAA=</HashCode>
+      <FileName>Models\AudienceType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.City" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAABAAAAAAAgAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\City.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.Event">
+    <Position X="8.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gSkABAAAIAEgAAIIgAAAAQAEAIAAKAgACAQAAYAAAAA=</HashCode>
+      <FileName>Models\Event.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="EventTracks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TechReady.Portal.Models.EventTrack">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAACCCAEAEAAAAAAAQIAAAAgAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventTrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Track" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TrackAgendas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TechReady.Portal.Models.Feedback" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAABgAgAAIAAAAAAAAQQAAAACCAAAAAAA=</HashCode>
+      <FileName>Models\Feedback.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.PrimaryTechnology" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAACEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PrimaryTechnology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.SecondaryTechnology" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAgAAAAACAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\SecondaryTechnology.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.Session">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAADgEBAIEAAAAAAAAAKAACQAAQABAAAAAAAAAg=</HashCode>
+      <FileName>Models\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.Speaker">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAASQCBAgEAAAAAAABAABAAAAUAAARAAAAAAAAA=</HashCode>
+      <FileName>Models\Speaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.Theme" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAEAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechReady.Portal.Models.Track">
+    <Position X="13.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAIEAhAAAAQAQAAAAAAAAAAgAAAAABAAAAAAAAFA=</HashCode>
+      <FileName>Models\Track.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Session" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TechReady.Portal.Models.TrackAgenda">
+    <Position X="11" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAABAAQAAAAAIAAAIIAggAQAAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\TrackAgenda.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="TechReady.Portal.Models.Zone" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAAAABAAQ=</HashCode>
+      <FileName>Models\City.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.scEligibility" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\Event.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.EventStatus">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAIAAAAAAAAAAIAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Event.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.EventVisibility">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAA=</HashCode>
+      <FileName>Models\Event.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.EventType">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAQAEAAAAAAAIgAAAAAAAAA=</HashCode>
+      <FileName>Models\Event.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.Affiliation">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAA=</HashCode>
+      <FileName>Models\Speaker.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.Type">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Speaker.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TechReady.Portal.Models.Format">
+    <Position X="7.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Track.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

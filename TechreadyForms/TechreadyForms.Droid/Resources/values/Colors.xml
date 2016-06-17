@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <color name="techReadyAppBar">#0072c6</color>
+  <color name="techReadyAppBarText">#FFFFFF</color>
+  <color name="techReadyAccent">#00b294</color>
+  <color name="techReadyBackground">#FFFFFF</color>
+  <color name="techReadyContent">#000000</color>
+  <color name="transparent">#00000000</color>
+  <color name="tab_highlight">#00b294</color>
+
+</resources>

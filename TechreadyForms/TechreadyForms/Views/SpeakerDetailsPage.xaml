@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             xmlns:global="clr-namespace:;assembly=TechreadyForms"
+             xmlns:dataTemplateSelectors="clr-namespace:TechReady.Helpers.DataTemplateSelectors;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.SpeakerDetailsPage" Appearing="SpeakerDetailsPage_OnAppearing" Title="Speaker Details">
+    
+    <TabbedPage.Children>
+        <ContentPage Title="Profile">
+                <Grid Padding="4,4,4,4">
+                    <ScrollView>
+
+                    <Grid Padding="0,4,0,4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding Speaker.PicUrl}" HeightRequest="100" WidthRequest="100"  Aspect="AspectFill" />
+                        <StackLayout Grid.Column="1" Padding="10,0,0,0" Spacing="1">
+                            <helpers:CustomLabel MaxLines="1" Text="{Binding Speaker.SpeakerName}" FontAttributes="Bold" TextColor="Black" LineBreakMode="TailTruncation"/>
+                            <helpers:CustomLabel MaxLines="1" Text="{Binding Speaker.Title}" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="TailTruncation">
+                                <helpers:CustomLabel.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                        <OnPlatform.iOS></OnPlatform.iOS>
+                                        <OnPlatform.Android>sans-serif-light</OnPlatform.Android>
+                                        <OnPlatform.WinPhone></OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </helpers:CustomLabel.FontFamily>
+                            </helpers:CustomLabel>
+                            <StackLayout IsVisible="{Binding IsLocationAvailable}" Orientation="Horizontal">
+                                <Image HeightRequest="20" WidthRequest="20" Source="{helpers:ImageResource TechreadyForms.Images.Redmond.png}" Aspect="AspectFill"/>
+                                <Label Text="{Binding Speaker.Location}" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                            <StackLayout IsVisible="{Binding IsTwitterLinkAvailable}" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Twitter_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image HeightRequest="20" WidthRequest="20" Source="{helpers:ImageResource TechreadyForms.Images.TwitterLoginImage.png}" Aspect="AspectFill"/>
+                                <Label Text="{Binding Speaker.TwitterLink}" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                            <StackLayout IsVisible="{Binding IsLinkedinLinkAvailable}" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="LinkedIn_Tapped"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Image HeightRequest="20" WidthRequest="20" Source="{helpers:ImageResource TechreadyForms.Images.Linkedin.png}" Aspect="AspectFill"/>
+                                <Label Text="{Binding Speaker.LinkedinLink}" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2"  Text="{Binding Speaker.Profile}" FontSize="Small"  Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap"/>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+        </ContentPage>
+        <ContentPage Title="Blogs" Appearing="Blogs_Appearing">
+            <Grid>
+                  
+                <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+                <Grid Padding="4,4,4,4"  IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}">
+                  <Label Text="No Blogs Available" IsVisible="{Binding IsBlogsAvailable,Converter={StaticResource biv}}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+                    <!--<ScrollView >
+                        <StackLayout>-->
+                            <ListView x:Name="BlogsList" ItemsSource="{Binding Speaker.Blogs}" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" RowHeight="100" ItemTapped="Blog_Selected" IsVisible="{Binding IsBlogsAvailable}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ContentView>
+                                                <StackLayout Grid.Column="1" Padding="0,4,0,4" Spacing="0" HorizontalOptions="FillAndExpand">
+                                                    <helpers:CustomLabel MaxLines="1" Grid.Column="1" Text="{Binding Title}" FontSize="Default" HorizontalOptions="FillAndExpand" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap">
+                                                    </helpers:CustomLabel>
+
+                                                    <helpers:CustomLabel MaxLines="4" Grid.Column="1" Text="{Binding Description}" FontSize="Micro" HorizontalOptions="FillAndExpand" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap">
+                                                    </helpers:CustomLabel>
+
+                                                    <Label Text="{Binding PublicationTime}" VerticalOptions="Start" HorizontalOptions="Start" FontSize="Micro" LineBreakMode="NoWrap"/>
+                                                </StackLayout>
+                                            </ContentView>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        <!--</StackLayout>
+                    </ScrollView>-->
+                </Grid>
+            </Grid>
+        </ContentPage>
+        <ContentPage Title="Events" Appearing="UpcomingSessions_Appearing">
+            <Grid>
+
+                <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+                <Grid Padding="4,4,4,4"  IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}">
+                  <Label Text="No Sessions Available" IsVisible="{Binding IsSessionsAvailable,Converter={StaticResource biv}}" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+                    <!--<ScrollView IsVisible="{Binding IsSessionsAvailable}" >
+                        <StackLayout>-->
+                            <ListView ItemsSource="{Binding Speaker.SpeakerEvents}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowHeight="88" ItemTapped="Event_ItemTapped"  IsVisible="{Binding IsSessionsAvailable}" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <ContentView>
+                                                <Grid Padding="0,4,0,4">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid WidthRequest="80" HeightRequest="80">
+                                                        <Image Source="{Binding EventType, Converter={StaticResource EventTypeToImageConverter}}" Aspect="AspectFill"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="1" Padding="8,0,0,0">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Start">
+                                                            <Label Text="{Binding EventName}"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                                            <Label Text="{Binding TechnologiesAbstract}" FontSize="11" LineBreakMode="TailTruncation"/>
+                                                        </StackLayout>
+
+                                                        <StackLayout Grid.Row="1" Spacing="2" VerticalOptions="End">
+                                                            <Label Text="{Binding CityName}"  FontSize="12" LineBreakMode="TailTruncation"/>
+                                                            <Label Text="{Binding EventFromTo}" FontSize="12" LineBreakMode="TailTruncation"/>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Grid>
+                                            </ContentView>
+                                        </ViewCell>
+                                    </DataTemplate>
+
+
+
+                                </ListView.ItemTemplate>
+                                </ListView>
+
+
+                        <!--</StackLayout>
+                    </ScrollView>-->
+                </Grid>
+            </Grid>
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

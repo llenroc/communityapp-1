@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="TechReady.Views.EventRegistrationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{StaticResource PageBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid Width="170" Height="61" Margin="0,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="/Assets/Images/logoTechReady.png"/>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="FailureGrid" Visibility="Collapsed" Grid.RowSpan="2" Canvas.ZIndex="2" HorizontalAlignment="Center" VerticalAlignment="Center" > <!--Visibility="{Binding OperationInProgress, Converter={StaticResource BoolToInverseVisibilityConverter}}"-->
+            <TextBlock x:Name="ErrorMessage" Text="This page is not available" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="15" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <WebView DefaultBackgroundColor="White" x:Name="WebView" Grid.Row="1" Margin="0,12,0,0"  NavigationStarting="WebView_OnNavigationStarting" NavigationCompleted="WebView_OnNavigationCompleted" NavigationFailed="WebView_OnNavigationFailed"></WebView>
+
+        <ProgressBar x:Name="ProgressBar" Visibility="Collapsed" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Foreground="{StaticResource TechReadyTitleForeground}" Background="Transparent" IsIndeterminate="True"/>
+
+
+    </Grid>
+       
+</Page>

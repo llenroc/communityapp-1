@@ -1,0 +1,73 @@
+﻿@model TechReady.Portal.Models.Notification
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Notification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfNotification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfNotification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResourceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResourceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActionLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotificationTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotificationTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotificationMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotificationMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PushDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PushDateTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

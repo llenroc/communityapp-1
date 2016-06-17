@@ -1,0 +1,111 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*varun*/
+
+div.tracks-container{
+    padding-left: 0;
+}
+
+a.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
+
+div.event-col{
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+div.event-col .form-group{
+    margin-bottom: 0px;
+}
+
+div.track-agenda-container{
+    margin-left: 96px;
+    margin-top: 5px;
+}
+
+div.div-event-track .form-group {
+    margin-bottom: 0;
+    margin-left: 16px;
+}
+
+/*div.div-event-track .form-group :nth-child(3){
+    margin-top: 5px;
+    margin-bottom: 2px;
+}*/
+
+div.div-event-track .save-button{
+    margin-top: 8px;
+    max-width: 35%;
+    margin-left: 16px;
+}
+
+.dialog-title-background div.ui-widget-header {
+          background: none !important;
+    }
+
+div.session-button{
+    margin-top: 10px;
+    margin-left: 300px;
+}
+
+div.session-button .btn{
+    display:inline-block;
+    margin-top: 8px;
+    margin: auto;
+}
+
+div.dialog-form-sessions .control-label{
+    font-weight: bold;
+}
+
+.ui-dialog-titlebar-close {
+  visibility: hidden;
+}
+
+.k-datepicker{
+    margin-bottom: 8px;
+}
+
+.k-datetimepicker {
+    margin-bottom: 4px;
+}
+
+#LinkCreateNewEvent {
+    cursor: pointer;
+}
+
+.user-ui-label {
+    background-color: #008cba;
+    color: #ffffff;
+    padding: 2px;
+}
+
+.div-trackagenda-title{
+    padding: 0 0 0 2px;
+    width: 190px;
+}

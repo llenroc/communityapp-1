@@ -1,0 +1,138 @@
+﻿@model TechReady.Portal.Models.Speaker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Speaker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeakerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PicUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PicUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Affiliation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Affiliation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobilePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobilePhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TwitterHandle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwitterHandle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FacebookLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FacebookLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkedInLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkedInLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogLink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecommendedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecommendedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeakerLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeakerLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SpeakerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:global="clr-namespace:;assembly=TechreadyForms"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.FollowedEventsPage" Title="Followed Events" Appearing="FollowedEventsPage_OnAppearing">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+
+                        <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+                        <valueConverters:EventTypeToImageConverter x:Key="EventTypeToImageConverter"/>
+                <DataTemplate x:Key="SmallItemTemplate">
+                    <ViewCell>
+                        <ContentView>
+                            <Grid Padding="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid WidthRequest="80" HeightRequest="80">
+                                    <Image Source="{Binding EventType, Converter={StaticResource EventTypeToImageConverter}}" Aspect="AspectFill"/>
+                                </Grid>
+                                <Grid Grid.Column="1" Padding="8,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Spacing="2" Grid.Row="0" VerticalOptions="Start">
+                                        <Label Text="{Binding EventName}"  FontSize="15" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding TechnologiesAbstract}" FontSize="11" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1" Spacing="2" VerticalOptions="End">
+                                        <Label Text="{Binding CityName}"  FontSize="12" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding EventFromTo}" FontSize="12" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+        <Grid Padding="4,4,4,4">
+            <!--<ScrollView>
+                <StackLayout>-->
+                    <global:ExtendedListView ItemTemplate="{StaticResource SmallItemTemplate}" ItemsSource="{Binding AllShownEvents}" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" RowHeight="88" ItemTapped="Event_ItemTapped" IsVisible="{Binding ShowAll,Converter={StaticResource biv}}">
+
+                    </global:ExtendedListView>
+
+
+                <!--</StackLayout>
+            </ScrollView>-->
+        </Grid>
+
+        <Label x:Name="ErrorMessage" Text="This page is not available" TextColor="Black" FontSize="Small"  IsVisible="False" XAlign="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+    </Grid>
+
+</ContentPage>

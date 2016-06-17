@@ -1,0 +1,18 @@
+﻿<ContentDialog x:Name="contentDialog"
+    x:Class="TechReady.Views.MessageContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechReady.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Dark"
+    PrimaryButtonText="OK"  
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+    Background="#FF00A4EF"
+    Foreground="White"
+    BorderBrush="White">   
+
+    <TextBlock x:Name="Content" Foreground="{Binding Foreground, ElementName=contentDialog}" TextWrapping="WrapWholeWords" />
+</ContentDialog>

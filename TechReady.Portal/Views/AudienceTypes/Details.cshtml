@@ -1,0 +1,26 @@
+﻿@model TechReady.Portal.Models.AudienceType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AudienceType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfAudience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfAudience)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AudienceTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

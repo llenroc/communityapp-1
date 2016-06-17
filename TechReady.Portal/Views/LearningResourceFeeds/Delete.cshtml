@@ -1,0 +1,63 @@
+﻿@model TechReady.Portal.Models.LearningResourceFeed
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LearningResourceFeed</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AudienceTypes)
+        </dt>
+
+        <dd>
+            @{
+                var audienceTypes = Model.AudienceTypes.Select(a => a.TypeOfAudience);
+                @String.Join(",", audienceTypes.ToArray());
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LearningResourceType.LearningResourceTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LearningResourceType.LearningResourceTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimaryTechnology.PrimaryTech)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrimaryTechnology.PrimaryTech)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RSSLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RSSLink)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+
+        <div class="text-danger">
+            @Html.ViewBag.showDeleteMsg
+        </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

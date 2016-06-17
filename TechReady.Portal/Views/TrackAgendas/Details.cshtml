@@ -1,0 +1,75 @@
+﻿@model TechReady.Portal.Models.TrackAgenda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TrackAgenda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.EventTrack.Event_TrackCombination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventTrack.Event_TrackCombination)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Session.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Session.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Speaker.SpeakerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Speaker.SpeakerName)
+        </dd>
+
+     
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FavCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FavCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QRCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QRCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TrackAgendaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TechReady.Portal.Models.EventTrack>
+
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2>View tracks of event: @ViewBag.selectedEvent</h2>
+
+<p>
+    @Html.ActionLink("Add a new track to this event", "AddTracks", "EventTracks", new { id = ViewBag.selectedEventID },null)
+
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Event.EventName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Track.TrackDisplayName)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.TrackVenue)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TrackDate)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TrackStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackSeating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackOwner)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Event.EventName)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Track.TrackDisplayName)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackVenue)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TrackDate)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackEndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackSeating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackOwner)
+        </td>
+        <td>
+            @Html.ActionLink("Manage agenda of this track", "DisplaySession", "TrackAgendas", new { id = item.EventTrackID }, null) |
+            @*@Html.ActionLink("Manage sessions", "Edit", new { id = item.EventTrackID }) |*@
+            @*@Html.ActionLink("Manage session", "Browse", "Sessions", new { id = item.EventTrackID }, null)  |*@
+            @Html.ActionLink("Edit", "Edit", new { id = item.EventTrackID, eventid = ViewBag.selectedEventID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventTrackID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventTrackID })
+        </td>
+    </tr>
+}
+
+</table>

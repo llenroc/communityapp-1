@@ -1,0 +1,136 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TechReady.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:coding4Fun="using:Coding4Fun.Toolkit.Controls"
+    xmlns:ValueConverters="using:TechReady.Helpers.ValueConverters"
+    x:Class="TechReady.Views.SpeakersListPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" NavigationCacheMode="Required">
+
+    <Page.BottomAppBar>
+        <CommandBar Background="#FF002050" Visibility="{Binding AreSpeakersAvailable,Converter={StaticResource BoolToVisibilityConverter}}" RequestedTheme="Dark">
+            <AppBarButton Label="Search" Icon="Find"  Visibility="{Binding SearchOpen, Converter={StaticResource BoolToInverseVisibilityConverter}}" Click="SearchButton_Click" />
+            <AppBarButton Label="Reset" Icon="Clear"  Visibility="{Binding SearchOpen, Converter={StaticResource BoolToVisibilityConverter}}" Click="ResetButton_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{StaticResource PageBackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid Width="170" Height="61" Margin="0,0,8,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="/Assets/Images/logoTechReady.png"/>
+            </Grid>
+        </Grid>
+
+        <ProgressBar IsIndeterminate="True" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="{Binding OperationInProgress, Converter={StaticResource BoolToVisibilityConverter}}" Foreground="{StaticResource TechReadyTitleForeground}" Background="Transparent"/>
+
+        <Grid Grid.Row="1" Margin="22,0,26,12">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="speakers" Grid.Row="0" FontFamily="Segoe WP" FontSize="36" Foreground="#FF002050" FontWeight="SemiLight" />
+
+                <Grid Visibility="{Binding OperationInProgress, Converter={StaticResource BoolToInverseVisibilityConverter}}"  Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Visibility="{Binding AreSpeakersAvailable, Converter={StaticResource BoolToInverseVisibilityConverter}}" Text="No Speakers available" Foreground="{StaticResource TechReadyTitleForeground}" FontSize="15" FontWeight="Light" FontFamily="Segoe WP" Margin="0,0,0,0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                
+                <TextBox x:Name="SearchBox" Grid.Row="1" Margin="0,6,0,6" TextChanged="SearchSpeaker_TextChanged" Visibility="{Binding SearchOpen, Converter={StaticResource BoolToVisibilityConverter}}" BorderBrush="Black" BorderThickness=".5" InputScope="Search" />
+
+                <ScrollViewer Grid.Row="2">
+
+                    <!--List view of speakers-->
+
+                    <ListView ItemsSource="{Binding Speakers}" Margin="0,6,0,0">
+
+                        <ListView.ItemTemplate>
+                            <!--<DataTemplate>
+
+                            <Grid Tag="{Binding}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" Source="{Binding PicUrl}" Height="120" Width="120" Stretch="UniformToFill" />
+
+                                <Grid Grid.Column="1" Margin="10,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Text="{Binding SpeakerName}"  Style="{StaticResource TechReadyFilterEventsPageTextBlock}" FontSize="18" />
+                                    <TextBlock Grid.Row="1" Text="{Binding SpeakerDescription}" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,3,0,0"/>
+                                    <Grid Grid.Row="2" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="{Binding Title}" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,3,0,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Location}" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,3,0,0" HorizontalAlignment="Right"/>
+
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                        </DataTemplate>-->
+
+                            <DataTemplate>
+
+                                <Grid Tag="{Binding}" Margin="0,8,0,0" Tapped="Speaker_Tapped">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <coding4Fun:SuperImage Grid.Column="0" PlaceholderImageSource="ms-appx:///Assets/Images/placeholderSpeaker.png" Source="{Binding PicUrl}" Height="100" Width="100"  Stretch="UniformToFill" PlaceholderImageStretch="Uniform" />
+
+                                    <Grid Grid.Column="1" Margin="10,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="24"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Style="{StaticResource TechReadyFilterEventsPageTextBlock}" Text="{Binding SpeakerName}" FontSize="18" Foreground="#FF002050"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Title}" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                        <!--<Grid Grid.Row="2" VerticalAlignment="Bottom">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>-->
+
+                                        <TextBlock Grid.Row="2" Text="{Binding Profile}" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="80" FontSize="16" />
+                                        <!--<TextBlock Grid.Column="1" Text="{Binding }" Style="{StaticResource TechReadyContentTextBlock}" TextWrapping="WrapWholeWords" Margin="0,3,0,0" HorizontalAlignment="Right"/>-->
+
+                                    </Grid>
+                                </Grid>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <!--<Button />-->
+
+                    </ListView>
+
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Page>

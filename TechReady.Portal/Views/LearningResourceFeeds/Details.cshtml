@@ -1,0 +1,53 @@
+﻿@model TechReady.Portal.Models.LearningResourceFeed
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LearningResourceFeed</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AudienceTypes)
+        </dt>
+
+        <dd>
+            @{
+                var audienceTypes = Model.AudienceTypes.Select(a => a.TypeOfAudience);
+                @String.Join(",", audienceTypes.ToArray());
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LearningResourceType.LearningResourceTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LearningResourceType.LearningResourceTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimaryTechnology.PrimaryTech)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrimaryTechnology.PrimaryTech)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RSSLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RSSLink)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LearningResourceFeedID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

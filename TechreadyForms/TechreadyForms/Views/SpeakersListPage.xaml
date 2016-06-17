@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TechreadyForms.Helpers;assembly=TechreadyForms"
+             xmlns:valueConverters="clr-namespace:TechReady.Helpers.ValueConverters;assembly=TechreadyForms"
+             x:Class="TechreadyForms.Views.SpeakersListPage" Title="Speakers" Appearing="SpeakersListPage_OnAppearing">
+
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <valueConverters:BoolToInverseVisibilityConverter x:Key="biv"/>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <ActivityIndicator IsVisible="{Binding OperationInProgress}" IsRunning="{Binding OperationInProgress}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"></ActivityIndicator>
+        <Grid Padding="4,4,4,4" IsVisible="{Binding OperationInProgress,Converter={StaticResource biv}}">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          
+          <StackLayout Orientation="Horizontal" Grid.Row="0">
+            <SearchBar x:Name="SearchBox" TextChanged="SearchSpeaker_TextChanged" IsVisible="{Binding SearchOpen}" HorizontalOptions="Fill"/>
+          </StackLayout>
+          
+          <Label Text="No Speakers available" Grid.RowSpan="2"  Style="{StaticResource TechReadyContentTextBlock}" IsVisible="{Binding AreSpeakersAvailable,Converter={StaticResource biv}}"  VerticalOptions="Center" HorizontalOptions="CenterAndExpand" LineBreakMode="WordWrap"/>
+
+          <!--<ScrollView>
+                <StackLayout>-->
+            <ListView x:Name="SpeakersList"  Grid.Row="1"  ItemsSource="{Binding Speakers}" RowHeight="100" ItemTapped="ListView_OnItemTapped" IsVisible="{Binding AreSpeakersAvailable}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Source="{Binding PicUrl}" HeightRequest="100" WidthRequest="100"  Aspect="AspectFill" />
+
+                            <StackLayout Grid.Column="1" Padding="10,0,0,0" Spacing="0">
+                                <helpers:CustomLabel MaxLines="1" Grid.Row="0" Text="{Binding SpeakerName}" FontAttributes="Bold" TextColor="Black" LineBreakMode="HeadTruncation"/>
+                                <helpers:CustomLabel MaxLines="1" Grid.Row="1" Text="{Binding Title}" Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="HeadTruncation">
+                                    <helpers:CustomLabel.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <OnPlatform.iOS></OnPlatform.iOS>
+                                            <OnPlatform.Android>sans-serif-light</OnPlatform.Android>
+                                            <OnPlatform.WinPhone></OnPlatform.WinPhone>
+                                        </OnPlatform>
+                                    </helpers:CustomLabel.FontFamily>
+                                </helpers:CustomLabel>
+                                <helpers:CustomLabel MaxLines="4" Grid.Row="2"  Text="{Binding Profile}" FontSize="Micro"  Style="{StaticResource TechReadyContentTextBlock}" LineBreakMode="WordWrap"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+                <!--</StackLayout>
+            </ScrollView>-->
+        </Grid>
+        
+        <Label x:Name="ErrorMessage" Text="Unable to get speakers from server" TextColor="Black" FontSize="Small"  IsVisible="False" XAlign="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+    </Grid>
+</ContentPage>
